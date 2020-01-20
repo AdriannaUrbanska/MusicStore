@@ -21,6 +21,8 @@ private slots:
 
     void on_powrot_clicked();
 
+    void info();
+
 private:
     Ui::Produkt *ui;
 

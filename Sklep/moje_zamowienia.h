@@ -18,8 +18,6 @@ public:
 private slots:
     void on_powrot_clicked();
 
-    void on_wyloguj_clicked();
-
 private:
     Ui::Moje_zamowienia *ui;
 };

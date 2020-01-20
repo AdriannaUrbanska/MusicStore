@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>362</width>
-    <height>165</height>
+    <width>370</width>
+    <height>230</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -18,14 +18,14 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>362</width>
-    <height>165</height>
+    <width>370</width>
+    <height>230</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>362</width>
-    <height>165</height>
+    <width>370</width>
+    <height>230</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -36,8 +36,8 @@
     <rect>
      <x>15</x>
      <y>15</y>
-     <width>331</width>
-     <height>136</height>
+     <width>340</width>
+     <height>200</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -72,7 +72,7 @@
          <string>Kategoria:</string>
         </property>
         <property name="alignment">
-         <set>Qt::AlignCenter</set>
+         <set>Qt::AlignBottom|Qt::AlignHCenter</set>
         </property>
        </widget>
       </item>
@@ -92,12 +92,24 @@
          <string>Opis:</string>
         </property>
         <property name="alignment">
-         <set>Qt::AlignCenter</set>
+         <set>Qt::AlignBottom|Qt::AlignHCenter</set>
         </property>
        </widget>
       </item>
       <item row="2" column="1">
        <widget class="QLabel" name="opis">
+        <property name="minimumSize">
+         <size>
+          <width>170</width>
+          <height>60</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>170</width>
+          <height>60</height>
+         </size>
+        </property>
         <property name="text">
          <string>TextLabel</string>
         </property>
@@ -143,6 +155,23 @@
         </property>
        </widget>
       </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>Ocena użytkowników:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QLabel" name="ocena">
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
      </layout>
     </item>
     <item>
@@ -165,9 +194,6 @@
     </item>
    </layout>
   </widget>
-  <zorder>layoutWidget</zorder>
-  <zorder>powrot</zorder>
-  <zorder>zamawiam</zorder>
  </widget>
  <resources/>
  <connections/>

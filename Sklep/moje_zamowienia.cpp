@@ -20,14 +20,3 @@ void Moje_zamowienia::on_powrot_clicked()
 {
     this->close();
 }
-
-void Moje_zamowienia::on_wyloguj_clicked()
-{
-    this->close();
-    this->parentWidget()->close();
-
-    if (QString::fromUtf8(this->parentWidget()->parentWidget()->metaObject()->className()) == "Nowy_uzytkownik")
-        this->parentWidget()->parentWidget()->parentWidget()->show();
-    else
-        this->parentWidget()->parentWidget()->show();
-}

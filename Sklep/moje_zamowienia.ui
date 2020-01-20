@@ -31,7 +31,7 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>16</x>
@@ -60,19 +60,6 @@
        <widget class="QPushButton" name="powrot">
         <property name="text">
          <string>Powrót</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="wyloguj">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>Wyloguj</string>
         </property>
        </widget>
       </item>

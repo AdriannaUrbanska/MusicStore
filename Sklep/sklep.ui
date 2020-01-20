@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>368</width>
+    <width>388</width>
     <height>379</height>
    </rect>
   </property>
@@ -18,13 +18,13 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>368</width>
+    <width>388</width>
     <height>379</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>368</width>
+    <width>388</width>
     <height>379</height>
    </size>
   </property>
@@ -34,13 +34,13 @@
   <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
-     <x>15</x>
-     <y>15</y>
-     <width>336</width>
-     <height>347</height>
+     <x>16</x>
+     <y>16</y>
+     <width>353</width>
+     <height>351</height>
     </rect>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout">
+   <layout class="QVBoxLayout" name="verticalLayout_2">
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_4">
       <item>
@@ -87,66 +87,61 @@
      </layout>
     </item>
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <layout class="QHBoxLayout" name="horizontalLayout_5">
       <item>
-       <widget class="QLabel" name="label_2">
-        <property name="text">
-         <string>Kategoria</string>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>Kategoria</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="kategoria"/>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <widget class="QLabel" name="label_3">
+            <property name="text">
+             <string>Sortowanie:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="sortowanie">
+            <item>
+             <property name="text">
+              <string>Od A do Z</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Od Z do A</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QPushButton" name="wybierz">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Maximum" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
         </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QComboBox" name="comboBox">
-        <item>
-         <property name="text">
-          <string>Wszystkie</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Dęte</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Klawiszowe</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Perkusyjne</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Smyczkowe</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_3">
-      <item>
-       <widget class="QLabel" name="label_3">
         <property name="text">
-         <string>Sortowanie:</string>
+         <string>Wybierz</string>
         </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QComboBox" name="comboBox_2">
-        <item>
-         <property name="text">
-          <string>Od A do Z</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Od Z do A</string>
-         </property>
-        </item>
        </widget>
       </item>
      </layout>

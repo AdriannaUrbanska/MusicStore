@@ -12,7 +12,8 @@
 #include <QDate>
 #include <libssh/libssh.h>
 
-QSqlDatabase db = QSqlDatabase::addDatabase("QPSQL");
+extern QSqlDatabase db;
+extern void close();
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -21,21 +22,17 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     ui->pokaz_haslo->setChecked(false);
-   // ui->haslo->setEchoMode(QLineEdit::Password);
+    ui->haslo->setEchoMode(QLineEdit::Password);
     ui->login->setEchoMode(QLineEdit::Normal);
-
 
     QDate date = QDate::currentDate();
     setWindowTitle("Sklep muzyczny " + date.toString("dd-MM-yyyy"));
 
     ui->radioKlient->setChecked(true);
-
-    //connection();
 }
 
 MainWindow::~MainWindow()
 {
-    db.close();
     delete ui;
 }
 
@@ -51,83 +48,75 @@ void MainWindow::on_zaloguj_clicked()
 {
     QString login_ = ui->login->text();
     QString haslo_ = ui->haslo->text();
-    bool poprawnosc = false;
+    bool poprawnosc = true;                     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ZMIENIĆ NA FALSE PÓŹNIEJ
 
-//    QSqlQuery query(db);
+    QSqlQuery query(db);
 
     if(ui->radioKlient->isChecked())
     {
-        s = new Sklep(this);
-        this->close();
-        s->show();
+        if(query.exec("SELECT * FROM uzytkownicy_K"))
+        {
+            while(query.next())
+            {
+                if(login_ == query.value(0).toString() &&
+                        haslo_ == query.value(1).toString())
+                {
+                    poprawnosc = true;
+                    break;
+                }
+            }
 
-//    if(query.exec("SELECT login, haslo from klient"))
-//    {
-//        while(query.next())
-//        {
-//            if(username == query.value(0).toString() &&
-//                    password == query.value(1).toString())
-//            {
-//                poprawnosc = true;
-//                break;
-//            }
-//        }
-
-//        if(poprawnosc)
-//        {
-
-
-
-//        }
-//        else
-//          QMessageBox::warning(this, "Logowanie", "Login lub hasło jest błędne!");
-//
-
-//    }
-//    else
-//        qDebug() <<"error";
+            if(poprawnosc)
+            {
+                s = new Sklep(this);
+                this->hide();
+                s->show();
+            }
+            else
+              QMessageBox::warning(this, "Logowanie", "Login lub hasło jest błędne!");
+        }
+        else
+            QMessageBox::warning(this, "Błąd", "Błąd połączenia!");
     }
     else
     {
-        s_p = new Sklep_pracownik(this);
-        this->close();
-        s_p->show();
+        if(query.exec("SELECT * FROM uzytkownicy_P"))
+        {
+            while(query.next())
+            {
+                if(login_ == query.value(0).toString() &&
+                        haslo_ == query.value(1).toString())
+                {
+                    poprawnosc = true;
+                    break;
+                }
+            }
+
+            if(poprawnosc)
+            {
+                s_p = new Sklep_pracownik(this);
+                this->hide();
+                s_p->show();
+            }
+            else
+              QMessageBox::warning(this, "Logowanie", "Login lub hasło jest błędne!");
+        }
+        else
+            QMessageBox::warning(this, "Błąd", "Błąd połączenia!");
     }
-
 }
 
-void MainWindow::connection()
-{
-    db.setConnectOptions();
-    db.setHostName("localhost");
-    db.setDatabaseName("project");
-    db.setUserName("urbanska");
-    db.setPassword("project");
-    db.setPort(5432);
-    bool ok = db.open();
 
-    if(ok)
-        QMessageBox::information(this, "Connection", "Connection OK");
-    else
-        QMessageBox::warning(this, "Connection", "ERROR");
-
-//        QSqlQuery query(db);
-
-//        if(query.exec("SELECT * from kurs1.kurs_opis"))
-//        {
-//            while(query.next())
-//            {
-//                qDebug()<<query.value(0).toString()<< " " << query.value(1).toString();
-//            }
-
-//        }
-//        else
-//            qDebug() <<"error";
-}
 
 void MainWindow::on_konto_clicked()
 {
     n_u = new Nowy_uzytkownik(this);
-    this->close();
+    this->hide();
     n_u->show();
+}
+
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    qDebug()<<"CLOSE";
+    db.close();
 }

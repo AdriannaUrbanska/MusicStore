@@ -23,6 +23,8 @@ private slots:
 
     void on_usun_clicked();
 
+    void info();
+
 private:
     Ui::Produkt_pracownik *ui;
 

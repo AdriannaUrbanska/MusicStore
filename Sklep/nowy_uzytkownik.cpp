@@ -52,3 +52,8 @@ void Nowy_uzytkownik::on_utworz_konto_clicked()
         s->show();
     }
 }
+
+void Nowy_uzytkownik::closeEvent(QCloseEvent *event)
+{
+    this->parentWidget()->show();
+}

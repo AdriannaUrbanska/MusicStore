@@ -69,7 +69,11 @@
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="QLineEdit" name="imie"/>
+         <widget class="QLineEdit" name="imie">
+          <property name="maxLength">
+           <number>50</number>
+          </property>
+         </widget>
         </item>
         <item row="1" column="0">
          <widget class="QLabel" name="label_2">
@@ -79,7 +83,11 @@
          </widget>
         </item>
         <item row="1" column="1">
-         <widget class="QLineEdit" name="nazwisko"/>
+         <widget class="QLineEdit" name="nazwisko">
+          <property name="maxLength">
+           <number>50</number>
+          </property>
+         </widget>
         </item>
         <item row="2" column="0">
          <widget class="QLabel" name="label_3">
@@ -89,7 +97,11 @@
          </widget>
         </item>
         <item row="2" column="1">
-         <widget class="QLineEdit" name="login"/>
+         <widget class="QLineEdit" name="login">
+          <property name="maxLength">
+           <number>50</number>
+          </property>
+         </widget>
         </item>
         <item row="3" column="0">
          <widget class="QLabel" name="label_4">
@@ -99,7 +111,11 @@
          </widget>
         </item>
         <item row="3" column="1">
-         <widget class="QLineEdit" name="haslo"/>
+         <widget class="QLineEdit" name="haslo">
+          <property name="maxLength">
+           <number>50</number>
+          </property>
+         </widget>
         </item>
         <item row="4" column="0">
          <widget class="QLabel" name="label_8">
@@ -109,7 +125,11 @@
          </widget>
         </item>
         <item row="4" column="1">
-         <widget class="QLineEdit" name="haslo2"/>
+         <widget class="QLineEdit" name="haslo2">
+          <property name="maxLength">
+           <number>50</number>
+          </property>
+         </widget>
         </item>
         <item row="5" column="0">
          <widget class="QLabel" name="label_5">
@@ -119,7 +139,11 @@
          </widget>
         </item>
         <item row="5" column="1">
-         <widget class="QLineEdit" name="telefon"/>
+         <widget class="QLineEdit" name="telefon">
+          <property name="maxLength">
+           <number>12</number>
+          </property>
+         </widget>
         </item>
         <item row="6" column="0">
          <widget class="QLabel" name="label_6">
@@ -129,7 +153,11 @@
          </widget>
         </item>
         <item row="6" column="1">
-         <widget class="QLineEdit" name="email"/>
+         <widget class="QLineEdit" name="email">
+          <property name="maxLength">
+           <number>50</number>
+          </property>
+         </widget>
         </item>
         <item row="8" column="0">
          <widget class="QLabel" name="label_9">
@@ -146,7 +174,11 @@
          </widget>
         </item>
         <item row="9" column="1">
-         <widget class="QLineEdit" name="ulica"/>
+         <widget class="QLineEdit" name="ulica">
+          <property name="maxLength">
+           <number>50</number>
+          </property>
+         </widget>
         </item>
         <item row="10" column="0">
          <widget class="QLabel" name="label_10">
@@ -156,7 +188,11 @@
          </widget>
         </item>
         <item row="10" column="1">
-         <widget class="QLineEdit" name="budynek"/>
+         <widget class="QLineEdit" name="budynek">
+          <property name="maxLength">
+           <number>7</number>
+          </property>
+         </widget>
         </item>
         <item row="11" column="0">
          <widget class="QLabel" name="label_11">
@@ -166,7 +202,11 @@
          </widget>
         </item>
         <item row="11" column="1">
-         <widget class="QLineEdit" name="mieszkanie"/>
+         <widget class="QLineEdit" name="mieszkanie">
+          <property name="maxLength">
+           <number>7</number>
+          </property>
+         </widget>
         </item>
         <item row="12" column="0">
          <widget class="QLabel" name="label_12">
@@ -176,7 +216,11 @@
          </widget>
         </item>
         <item row="12" column="1">
-         <widget class="QLineEdit" name="miasto"/>
+         <widget class="QLineEdit" name="miasto">
+          <property name="maxLength">
+           <number>70</number>
+          </property>
+         </widget>
         </item>
         <item row="13" column="0">
          <widget class="QLabel" name="label_13">
@@ -186,7 +230,11 @@
          </widget>
         </item>
         <item row="13" column="1">
-         <widget class="QLineEdit" name="kod"/>
+         <widget class="QLineEdit" name="kod">
+          <property name="maxLength">
+           <number>6</number>
+          </property>
+         </widget>
         </item>
         <item row="14" column="0">
          <widget class="QLabel" name="label_14">
@@ -196,7 +244,11 @@
          </widget>
         </item>
         <item row="14" column="1">
-         <widget class="QLineEdit" name="kraj"/>
+         <widget class="QLineEdit" name="kraj">
+          <property name="maxLength">
+           <number>70</number>
+          </property>
+         </widget>
         </item>
         <item row="7" column="0">
          <widget class="Line" name="line">

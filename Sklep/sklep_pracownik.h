@@ -17,6 +17,8 @@ class Sklep_pracownik : public QDialog
 public:
     explicit Sklep_pracownik(QWidget *parent = 0);
     ~Sklep_pracownik();
+protected:
+    void closeEvent(QCloseEvent *event) override;
 
 private slots:
     void on_wyloguj_clicked();
@@ -26,6 +28,14 @@ private slots:
     void on_produkt_info_clicked();
 
     void on_dodaj_clicked();
+
+    void on_wybierz_clicked();
+
+    void produkty();
+
+    void on_szukaj_clicked();
+
+    void openProdukt(const QModelIndex &);
 
 private:
     Ui::Sklep_pracownik *ui;

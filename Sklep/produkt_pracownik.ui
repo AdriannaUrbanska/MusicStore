@@ -6,20 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>359</width>
-    <height>168</height>
+    <width>370</width>
+    <height>210</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>359</width>
-    <height>168</height>
+    <width>370</width>
+    <height>210</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>359</width>
-    <height>168</height>
+    <width>370</width>
+    <height>210</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -30,8 +30,8 @@
     <rect>
      <x>15</x>
      <y>15</y>
-     <width>331</width>
-     <height>136</height>
+     <width>340</width>
+     <height>179</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -86,12 +86,24 @@
          <string>Opis:</string>
         </property>
         <property name="alignment">
-         <set>Qt::AlignCenter</set>
+         <set>Qt::AlignBottom|Qt::AlignHCenter</set>
         </property>
        </widget>
       </item>
       <item row="2" column="1">
        <widget class="QLabel" name="opis">
+        <property name="minimumSize">
+         <size>
+          <width>170</width>
+          <height>60</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>170</width>
+          <height>60</height>
+         </size>
+        </property>
         <property name="text">
          <string>TextLabel</string>
         </property>
