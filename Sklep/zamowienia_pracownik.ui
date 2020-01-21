@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>348</width>
+    <width>550</width>
     <height>317</height>
    </rect>
   </property>
@@ -18,13 +18,13 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>348</width>
+    <width>550</width>
     <height>317</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>348</width>
+    <width>550</width>
     <height>317</height>
    </size>
   </property>
@@ -36,7 +36,7 @@
     <rect>
      <x>15</x>
      <y>15</y>
-     <width>316</width>
+     <width>511</width>
      <height>286</height>
     </rect>
    </property>
@@ -70,7 +70,38 @@
      </layout>
     </item>
     <item>
-     <widget class="QTableWidget" name="tableWidget"/>
+     <widget class="QTableWidget" name="tableWidget">
+      <column>
+       <property name="text">
+        <string>Nr ID</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Użytkownik</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Produkt</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>L. sztuk</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Data zamówienia</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Status</string>
+       </property>
+      </column>
+     </widget>
     </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">

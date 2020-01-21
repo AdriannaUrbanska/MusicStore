@@ -37,6 +37,16 @@ Sklep::Sklep(QWidget *parent) :
     ui->listWidget->setCurrentRow(0);
 
     connect(ui->listWidget, SIGNAL(activated(QModelIndex)), this, SLOT(openProdukt(QModelIndex)));
+
+    if (QString::fromUtf8(this->parentWidget()->metaObject()->className()) == "Nowy_uzytkownik")
+    {
+        login_ = this->parentWidget()->parentWidget()->findChild<QLineEdit*>("login")->text();
+    }
+    else
+    {
+        login_ = this->parentWidget()->findChild<QLineEdit*>("login")->text();
+    }
+    ui->login->setText(login_);
 }
 
 Sklep::~Sklep()

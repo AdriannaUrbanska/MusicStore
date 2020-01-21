@@ -18,6 +18,7 @@ class Sklep : public QDialog
 
 public:
     explicit Sklep(QWidget *parent = 0);
+    QString login_;
     ~Sklep();
 protected:
     void closeEvent(QCloseEvent *event) override;

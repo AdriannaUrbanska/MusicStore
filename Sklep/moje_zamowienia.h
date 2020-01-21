@@ -17,6 +17,7 @@ public:
 
 private slots:
     void on_powrot_clicked();
+    void zamowienia();
 
 private:
     Ui::Moje_zamowienia *ui;
