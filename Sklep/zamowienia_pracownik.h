@@ -18,6 +18,7 @@ public:
 private slots:
     void on_powrot_clicked();
 
+    void zamowienia();
 private:
     Ui::Zamowienia_pracownik *ui;
 };

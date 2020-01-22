@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>560</width>
-    <height>318</height>
+    <width>555</width>
+    <height>390</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -18,14 +18,14 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>560</width>
-    <height>318</height>
+    <width>555</width>
+    <height>390</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>560</width>
-    <height>318</height>
+    <width>555</width>
+    <height>390</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -34,13 +34,13 @@
   <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
-     <x>17</x>
-     <y>15</y>
-     <width>522</width>
-     <height>288</height>
+     <x>16</x>
+     <y>17</y>
+     <width>527</width>
+     <height>357</height>
     </rect>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout">
+   <layout class="QVBoxLayout" name="verticalLayout_3">
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
@@ -69,47 +69,178 @@
      </layout>
     </item>
     <item>
-     <widget class="QTableWidget" name="tableWidget">
+     <widget class="QTabWidget" name="tab">
       <property name="minimumSize">
        <size>
-        <width>520</width>
-        <height>232</height>
+        <width>525</width>
+        <height>301</height>
        </size>
       </property>
       <property name="maximumSize">
        <size>
-        <width>520</width>
-        <height>232</height>
+        <width>525</width>
+        <height>301</height>
        </size>
       </property>
-      <column>
-       <property name="text">
-        <string>Nazwa</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Cena</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Data wysłania</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Status</string>
-       </property>
-      </column>
+      <property name="currentIndex">
+       <number>1</number>
+      </property>
+      <widget class="QWidget" name="wtrakcie">
+       <attribute name="title">
+        <string>W trakcie realizacji</string>
+       </attribute>
+       <widget class="QWidget" name="">
+        <property name="geometry">
+         <rect>
+          <x>2</x>
+          <y>2</y>
+          <width>522</width>
+          <height>263</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <item>
+          <widget class="QTableWidget" name="tab_w_trakcie">
+           <property name="minimumSize">
+            <size>
+             <width>520</width>
+             <height>232</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>520</width>
+             <height>232</height>
+            </size>
+           </property>
+           <column>
+            <property name="text">
+             <string>Nazwa</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Cena</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Data zamówienia</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Status</string>
+            </property>
+           </column>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="anuluj">
+           <property name="maximumSize">
+            <size>
+             <width>510</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Anuluj zamówienie</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="zrealizowane">
+       <attribute name="title">
+        <string>Zrealizowane</string>
+       </attribute>
+       <widget class="QWidget" name="">
+        <property name="geometry">
+         <rect>
+          <x>4</x>
+          <y>4</y>
+          <width>522</width>
+          <height>263</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout">
+         <item>
+          <widget class="QTableWidget" name="tab_zrealizowane">
+           <property name="minimumSize">
+            <size>
+             <width>520</width>
+             <height>232</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>520</width>
+             <height>232</height>
+            </size>
+           </property>
+           <column>
+            <property name="text">
+             <string>Nazwa</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Cena</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Data zamówienia</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Status</string>
+            </property>
+           </column>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="ocen_2">
+           <property name="maximumSize">
+            <size>
+             <width>510</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Oceń produkt</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <zorder>tab_zrealizowane</zorder>
+       <zorder>tab_zrealizowane</zorder>
+       <zorder>ocen_2</zorder>
+      </widget>
      </widget>
     </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
        <widget class="QPushButton" name="powrot">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="text">
          <string>Powrót</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="info">
+        <property name="text">
+         <string>Więcej informacji o zamówieniu</string>
         </property>
        </widget>
       </item>
