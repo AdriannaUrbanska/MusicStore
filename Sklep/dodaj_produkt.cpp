@@ -5,6 +5,7 @@
 #include <QMessageBox>
 #include <QListWidget>
 #include <QComboBox>
+#include <QDebug>
 
 extern QSqlDatabase db;
 
