@@ -19,6 +19,8 @@ private slots:
     void on_powrot_clicked();
     void zamowienia();
 
+    void on_anuluj_clicked();
+
 private:
     Ui::Moje_zamowienia *ui;
 };

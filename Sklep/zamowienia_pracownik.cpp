@@ -27,6 +27,7 @@ Zamowienia_pracownik::Zamowienia_pracownik(QWidget *parent) :
     ui->tab_zrealizowane->setColumnWidth(4,100);
     ui->tab_zrealizowane->setColumnWidth(5,150);
 
+    ui->tab->setCurrentIndex(0);
     zamowienia();
 }
 

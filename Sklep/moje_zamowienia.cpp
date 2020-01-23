@@ -27,6 +27,7 @@ Moje_zamowienia::Moje_zamowienia(QWidget *parent) :
     ui->tab_w_trakcie->setColumnWidth(3,160);
 
     ui->tab->setCurrentIndex(0);
+
     zamowienia();
 }
 
@@ -75,4 +76,9 @@ Moje_zamowienia::~Moje_zamowienia()
 void Moje_zamowienia::on_powrot_clicked()
 {
     this->close();
+}
+
+void Moje_zamowienia::on_anuluj_clicked()
+{
+
 }

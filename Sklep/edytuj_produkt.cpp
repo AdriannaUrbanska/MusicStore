@@ -59,12 +59,13 @@ void Edytuj_produkt::on_powrot_clicked()
 
 void Edytuj_produkt::on_zapisz_clicked()
 {
-    QString produkt_ = "'" + ui->produkt->text() + "', ";
-    QString kategoria_ = QString::number(ui->kategoria->currentIndex()+1) + ", ";
-    QString cena_ = QString::number(ui->cena->value()) + ", '";
-    QString opis_ = ui->opis->toPlainText()+ "', ";
+    QString produkt_ = ui->produkt->text();
+    QString kategoria_ = QString::number(ui->kategoria->currentIndex()+1);
+    QString cena_ = QString::number(ui->cena->value());
+    QString opis_ = ui->opis->toPlainText();
     QString sztuki_ = QString::number(ui->sztuki->value());
     int len_ = opis_.length()-2;
+    QString kat_ = ui->kategoria->currentText();
 
     if (len_>200)
     {
@@ -77,8 +78,22 @@ void Edytuj_produkt::on_zapisz_clicked()
 
         if (button == QMessageBox::Yes)
         {
-            QMessageBox::information(this, "Zapisz zmiany", "Zmiany zostały zapisane!");
-            this->close();
+            QSqlQuery query(db);
+
+            if(query.exec("UPDATE produkt SET nazwa_produktu = '" + produkt_ + "', id_kategoria = " + kategoria_ + ", cena_produktu = " + cena_ +
+                          ", opis_produktu = '" + opis_ + "', dostepna_liczba_sztuk = " + sztuki_ + " WHERE nazwa_produktu = '" + produkt_ + "'"))
+            {
+                QMessageBox::information(this, "Zapisz zmiany", "Zmiany zostały zapisane!");
+                this->close();
+
+                this->parentWidget()->findChild<QLabel*>("produkt")->setText(produkt_);
+                this->parentWidget()->findChild<QLabel*>("kategoria")->setText(kat_);
+                this->parentWidget()->findChild<QLabel*>("opis")->setText(opis_);
+                this->parentWidget()->findChild<QLabel*>("cena")->setText(cena_ + "zł");
+                this->parentWidget()->findChild<QLabel*>("sztuki")->setText(sztuki_);
+            }
+            else
+                QMessageBox::warning(this, "Błąd", "Błąd połączenia!");
         }
     }
 }
