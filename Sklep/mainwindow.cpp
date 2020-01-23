@@ -44,7 +44,7 @@ void MainWindow::on_zaloguj_clicked()
 {
     QString login_ = ui->login->text();
     QString haslo_ = ui->haslo->text();
-    bool poprawnosc = true;                     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ZMIENIĆ NA FALSE PÓŹNIEJ
+    bool poprawnosc = false;
 
     QSqlQuery query(db);
 

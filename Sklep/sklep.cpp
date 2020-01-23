@@ -40,12 +40,23 @@ Sklep::Sklep(QWidget *parent) :
 
     if (QString::fromUtf8(this->parentWidget()->metaObject()->className()) == "Nowy_uzytkownik")
     {
-        login_ = this->parentWidget()->parentWidget()->findChild<QLineEdit*>("login")->text();
+        QSqlQuery query(db);
+
+        if(query.exec("SELECT login FROM klient"))
+        {
+            while(query.next())
+            {
+                login_ = query.value(0).toString();
+            }
+        }
+        else
+            QMessageBox::warning(this, "Błąd", "Błąd połączenia!");
     }
     else
     {
         login_ = this->parentWidget()->findChild<QLineEdit*>("login")->text();
     }
+
     ui->login->setText(login_);
 }
 
