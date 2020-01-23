@@ -134,7 +134,10 @@ void Sklep_pracownik::closeEvent(QCloseEvent *event)
 
 void Sklep_pracownik::on_szukaj_clicked()
 {
-    QString nazwa_ = ui->lineEdit->text();
+    QString tmp = ui->lineEdit->text().toLower();
+    QString nazwa_ = tmp;
+    nazwa_[0] = tmp[0].toUpper();
+
     QSqlQuery query(db);
 
     if(query.exec("SELECT n FROM produkty WHERE n LIKE '" + nazwa_ + "'"))

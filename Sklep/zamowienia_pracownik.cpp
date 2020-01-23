@@ -4,6 +4,7 @@
 #include <QSqlDatabase>
 #include <QMessageBox>
 #include <QDebug>
+#include <QDate>
 
 extern QSqlDatabase db;
 
@@ -44,14 +45,15 @@ Zamowienia_pracownik::Zamowienia_pracownik(QWidget *parent) :
     ui->tab_zrealizowane->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tab_zrealizowane->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tab_zrealizowane->setSelectionMode(QAbstractItemView::SingleSelection);
-    //ui->tab_zrealizowane->setCurrentIndex(ui->tab_zrealizowane->model()->index(0,0));
     ui->tab_zrealizowane->selectRow(0);
 
     ui->tab_w_trakcie->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tab_w_trakcie->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tab_w_trakcie->setSelectionMode(QAbstractItemView::SingleSelection);
-    //ui->tab_w_trakcie->setCurrentIndex(ui->tab_zrealizowane->model()->index(0,0));
     ui->tab_w_trakcie->selectRow(0);
+
+    if(ui->tab_w_trakcie->rowCount() == 0)
+        ui->oznacz->setDisabled(true);
 }
 
 Zamowienia_pracownik::~Zamowienia_pracownik()
@@ -78,6 +80,7 @@ void Zamowienia_pracownik::zamowienia()
             if(query.value(5).toString() == "W trakcie realizacji")
             {
                 ui->tab_w_trakcie->insertRow(i_w_trakcie);
+                ui->oznacz->setEnabled(true);
                 ui->tab_w_trakcie->setItem(i_w_trakcie,0,new QTableWidgetItem(query.value(0).toString()));
                 ui->tab_w_trakcie->setItem(i_w_trakcie,1,new QTableWidgetItem(query.value(1).toString()));
                 ui->tab_w_trakcie->setItem(i_w_trakcie,2,new QTableWidgetItem(query.value(2).toString()));
@@ -101,6 +104,40 @@ void Zamowienia_pracownik::zamowienia()
     }
     else
         QMessageBox::warning(this, "Błąd", "Błąd połączenia!");
+}
 
+void Zamowienia_pracownik::on_oznacz_clicked()
+{
+    QString data_ = QDate::currentDate().toString("MM-dd-yyyy");
+    int idx = ui->tab_w_trakcie->currentRow();
+    QString zamowienie_ = ui->tab_w_trakcie->item(idx,0)->text();
 
+    QMessageBox::StandardButton button;
+    button = QMessageBox::question(this, "Oznacz jako zrealizowane",
+                                   "Jesteś pewien, że chcesz zmienić status zamównienia na zrealizowany?",
+                                   QMessageBox::Yes | QMessageBox::No);
+
+    if (button == QMessageBox::Yes)
+    {
+        QSqlQuery query(db);
+//        qDebug()<<"UPDATE zamowienie SET data_wyslania = '" + data_ + "' WHERE id_zamowienie = " + zamowienie_;
+        if(query.exec("UPDATE zamowienie SET data_wyslania = '" + data_ + "' WHERE id_zamowienie = " + zamowienie_))
+        {
+            QMessageBox::information(this, "Oznacz jako zrealizowane", "Zamówienie zostało oznaczone jako zrealizowane!");
+            ui->tab_w_trakcie->setRowCount(0);
+            ui->tab_zrealizowane->setRowCount(0);
+            zamowienia();
+
+            if(ui->tab_w_trakcie->rowCount() == 0)
+                ui->oznacz->setDisabled(true);
+        }
+        else
+            QMessageBox::warning(this, "Błąd", "Błąd połączenia!");
+    }
+}
+
+void Zamowienia_pracownik::on_szczegoly_clicked()
+{
+    zpi = new Zamowienie_pracownik_info(this);
+    zpi->show();
 }

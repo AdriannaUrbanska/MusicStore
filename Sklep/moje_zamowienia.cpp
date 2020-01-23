@@ -40,6 +40,12 @@ Moje_zamowienia::Moje_zamowienia(QWidget *parent) :
     ui->tab_w_trakcie->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tab_w_trakcie->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->tab_w_trakcie->selectRow(0);
+
+    if(ui->tab_w_trakcie->rowCount() == 0)
+        ui->anuluj->setDisabled(true);
+
+    if(ui->tab_zrealizowane->rowCount() == 0)
+        ui->ocena->setDisabled(true);
 }
 
 void Moje_zamowienia::zamowienia()
@@ -54,23 +60,27 @@ void Moje_zamowienia::zamowienia()
     if(query.exec("SELECT * FROM wyszukaj_zamowienia('" + login_ + "')"))
     {
         while(query.next())
-        {
+        {    
             if(query.value(3).toString() == "W trakcie realizacji")
             {
                 ui->tab_w_trakcie->insertRow(i_w_trakcie);
+                ui->anuluj->setEnabled(true);
                 ui->tab_w_trakcie->setItem(i_w_trakcie,0,new QTableWidgetItem(query.value(0).toString()));
                 ui->tab_w_trakcie->setItem(i_w_trakcie,1,new QTableWidgetItem(query.value(1).toString()));
                 ui->tab_w_trakcie->setItem(i_w_trakcie,2,new QTableWidgetItem(query.value(2).toString()));
                 ui->tab_w_trakcie->setItem(i_w_trakcie,3,new QTableWidgetItem(query.value(3).toString()));
+                ui->tab_w_trakcie->setItem(i_w_trakcie,4,new QTableWidgetItem(query.value(4).toString()));
                 i_w_trakcie++;
             }
             else
             {
                 ui->tab_zrealizowane->insertRow(i_zrealizowane);
+                ui->tab_w_trakcie->setEnabled(true);
                 ui->tab_zrealizowane->setItem(i_zrealizowane,0,new QTableWidgetItem(query.value(0).toString()));
                 ui->tab_zrealizowane->setItem(i_zrealizowane,1,new QTableWidgetItem(query.value(1).toString()));
                 ui->tab_zrealizowane->setItem(i_zrealizowane,2,new QTableWidgetItem(query.value(2).toString()));
                 ui->tab_zrealizowane->setItem(i_zrealizowane,3,new QTableWidgetItem(query.value(3).toString()));
+                ui->tab_zrealizowane->setItem(i_zrealizowane,4,new QTableWidgetItem(query.value(4).toString()));
                 i_zrealizowane++;
             }
         }
@@ -91,11 +101,57 @@ void Moje_zamowienia::on_powrot_clicked()
 
 void Moje_zamowienia::on_anuluj_clicked()
 {
+    QMessageBox::StandardButton button;
+    button = QMessageBox::question(this, "Anuluj zamówienie", "Jesteś pewien, że chcesz anulować zamówienie?", QMessageBox::Yes | QMessageBox::No);
 
+    if (button == QMessageBox::Yes)
+    {
+        QSqlQuery query(db);
+        int idx = ui->tab_w_trakcie->currentRow();
+        QString zamowienie_ = ui->tab_w_trakcie->item(idx,4)->text();
+        QString produkt_ = ui->tab_w_trakcie->item(idx,0)->text();
+        QString sztuki_ = "";
+
+        if(query.exec("SELECT liczba_sztuk FROM zamowienie WHERE id_zamowienie = " + zamowienie_))
+        {
+            while(query.next())
+            {
+                sztuki_ = query.value(0).toString();
+            }
+        }
+        else
+            QMessageBox::warning(this, "Błąd", "Błąd połączenia!");
+
+
+        if(query.exec("DELETE FROM produkt_zamowienie WHERE id_zamowienie = " + zamowienie_))
+        {
+            QMessageBox::information(this, "Anulowanie zamówienia", "Zamówienie zostało anulowane!");
+            ui->tab_w_trakcie->setRowCount(0);
+            ui->tab_zrealizowane->setRowCount(0);
+            zamowienia();
+
+            if(ui->tab_w_trakcie->rowCount() == 0)
+                ui->anuluj->setDisabled(true);
+        }
+        else
+            QMessageBox::warning(this, "Błąd", "Błąd połączenia!");
+
+
+        if(!query.exec("SELECT * FROM sztuki_dodaj('" + produkt_ + "', " + sztuki_ + ")"))
+        {
+            QMessageBox::warning(this, "Błąd", "Błąd połączenia!");
+        }
+    }
 }
 
 void Moje_zamowienia::on_ocena_clicked()
 {
     o = new Ocena(this);
     o->show();
+}
+
+void Moje_zamowienia::on_info_clicked()
+{
+    zi = new Zamowienie_info(this);
+    zi->show();
 }

@@ -3,6 +3,7 @@
 #include <QSqlQuery>
 #include <QMessageBox>
 #include <QListWidget>
+#include <QDebug>
 
 extern QSqlDatabase db;
 
@@ -58,6 +59,17 @@ void Produkt::info()
     }
     else
         QMessageBox::warning(this, "Błąd", "Błąd połączenia!");
+
+    if(query.exec("SELECT * FROM ocena_produktu('" + produkt_ + "')"))
+    {
+        while(query.next())
+        {
+            ocena_ = query.value(0).toString();
+        }
+    }
+    else
+        QMessageBox::warning(this, "Błąd", "Błąd połączenia!");
+
 
     if(opis_ == "") opis_ = "Brak opisu";
     if(cena_ == "0zł") cena_ = "Brak ceny";

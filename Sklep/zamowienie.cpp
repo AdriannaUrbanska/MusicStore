@@ -3,9 +3,10 @@
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QMessageBox>
+#include <QDate>
+#include <QDebug>
 
 extern QSqlDatabase db;
-
 
 Zamowienie::Zamowienie(QWidget *parent) :
     QDialog(parent),
@@ -58,8 +59,48 @@ void Zamowienie::on_powrot_clicked()
 
 void Zamowienie::on_zamawiam_clicked()
 {
-    p_z = new Po_zamowieniu(this);
-    p_z->show();
+    QSqlQuery query(db);
+    QString id_;
+    QString login_ = parentWidget()->parentWidget()->findChild<QLabel*>("login")->text();
+    QString id_przesylka_ = QString::number(ui->dostawa->currentIndex()+1);
+    QString liczba_sztuk_ = QString::number(ui->sztuki->value());
+    int len_ = ui->do_zaplaty->text().length();
+    QString do_zaplaty_ = ui->do_zaplaty->text().left(len_ - 2);
+    QString data_zamowienia_ = QDate::currentDate().toString("MM-dd-yyyy");
+    QString produkt_ = ui->produkt->text();
+
+    if(query.exec("SELECT * FROM id_zamowienie_next"))
+    {
+        while(query.next())
+        {
+            id_ = query.value(0).toString();
+        }
+    }
+    else
+        QMessageBox::warning(this, "Błąd", "Błąd połączenia!");
+
+
+    if(query.exec("INSERT INTO zamowienie(id_zamowienie, login, id_przesylka, liczba_sztuk, do_zaplaty, data_zamowienia) VALUES(" +
+                   id_ + ", '" + login_ + "', " + id_przesylka_ + ", "
+                   + liczba_sztuk_ + ", " + do_zaplaty_ + ", '" + data_zamowienia_ + "')"))
+    {
+        if(query.exec("INSERT INTO produkt_zamowienie VALUES(" + id_ + ", '" + produkt_ + "')"))
+        {
+            QMessageBox::information(this, "Zamówienie", "Zamówienie zostało przyjęte!");
+            p_z = new Po_zamowieniu(this);
+            p_z->show();
+        }
+        else
+            QMessageBox::warning(this, "Błąd", "Błąd połączenia!");
+    }
+    else
+        QMessageBox::warning(this, "Błąd", "Błąd połączenia!");
+
+
+    if(!query.exec("SELECT * FROM sztuki('" + produkt_ + "', " + liczba_sztuk_ + ")"))
+    {
+        QMessageBox::warning(this, "Błąd", "Błąd połączenia!");
+    }
 }
 
 void Zamowienie::ustaw(int)

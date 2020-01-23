@@ -161,7 +161,10 @@ void Sklep::on_wybierz_clicked()
 
 void Sklep::on_szukaj_clicked()
 {
-    QString nazwa_ = ui->lineEdit->text();
+    QString tmp = ui->lineEdit->text().toLower();
+    QString nazwa_ = tmp;
+    nazwa_[0] = tmp[0].toUpper();
+
     QSqlQuery query(db);
 
     if(query.exec("SELECT n FROM produkty WHERE n LIKE '" + nazwa_ + "'"))
@@ -181,4 +184,10 @@ void Sklep::on_szukaj_clicked()
 void Sklep::openProdukt(const QModelIndex &)
 {
     on_produkt_info_clicked();
+}
+
+void Sklep::on_sklep_info_clicked()
+{
+    si = new Sklep_info(this);
+    si->show();
 }

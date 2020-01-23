@@ -3,14 +3,10 @@
 #include <QtSql>
 #include <QSqlDatabase>
 #include <QMessageBox>
-#include <iostream>
-#include <QStringList>
 #include <QString>
-#include <stdlib.h>
 #include <QSqlQuery>
 #include <QDebug>
 #include <QDate>
-#include <libssh/libssh.h>
 
 extern QSqlDatabase db;
 extern void close();
@@ -105,7 +101,6 @@ void MainWindow::on_zaloguj_clicked()
             QMessageBox::warning(this, "Błąd", "Błąd połączenia!");
     }
 }
-
 
 
 void MainWindow::on_konto_clicked()

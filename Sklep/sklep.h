@@ -5,6 +5,7 @@
 #include "produkt.h"
 #include "moje_zamowienia.h"
 #include "mainwindow.h"
+#include "sklep_info.h"
 
 class Nowy_uzytkownik;
 
@@ -38,11 +39,14 @@ private slots:
 
     void openProdukt(const QModelIndex &);
 
+    void on_sklep_info_clicked();
+
 private:
     Ui::Sklep *ui;
 
     Produkt * p;
     Moje_zamowienia * m_z;
+    Sklep_info *si;
 };
 
 #endif // SKLEP_H

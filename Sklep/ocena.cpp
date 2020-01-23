@@ -16,7 +16,7 @@ Ocena::Ocena(QWidget *parent) :
     ui->setupUi(this);
     this->setWindowTitle("Ocena produktu");
     ui->ocena->setCurrentIndex(9);
-
+    ui->usun->setDisabled(true);
     ustaw();
 }
 
@@ -102,6 +102,8 @@ void Ocena::ustaw()
                 }
                 else
                     QMessageBox::warning(this, "Błąd", "Błąd połączenia!");
+
+                ui->usun->setEnabled(true);
             }
         }
     }
@@ -128,5 +130,6 @@ void Ocena::on_usun_clicked()
             this->close();
         }
         else
-            QMessageBox::warning(this, "Błąd", "Błąd połączenia!");}
+            QMessageBox::warning(this, "Błąd", "Błąd połączenia!");
+    }
 }

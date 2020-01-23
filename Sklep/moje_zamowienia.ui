@@ -83,7 +83,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="wtrakcie">
        <attribute name="title">
@@ -120,7 +120,7 @@
            </column>
            <column>
             <property name="text">
-             <string>Cena</string>
+             <string>Do zapłaty [zł]</string>
             </property>
            </column>
            <column>
@@ -131,6 +131,11 @@
            <column>
             <property name="text">
              <string>Status</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Nr ID</string>
             </property>
            </column>
           </widget>
@@ -186,7 +191,7 @@
            </column>
            <column>
             <property name="text">
-             <string>Cena</string>
+             <string>Do zapłaty [zł]</string>
             </property>
            </column>
            <column>
@@ -197,6 +202,11 @@
            <column>
             <property name="text">
              <string>Status</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Nr ID</string>
             </property>
            </column>
           </widget>

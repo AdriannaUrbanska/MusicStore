@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>388</width>
+    <width>425</width>
     <height>379</height>
    </rect>
   </property>
@@ -18,25 +18,25 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>388</width>
+    <width>425</width>
     <height>379</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>388</width>
+    <width>425</width>
     <height>379</height>
    </size>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QWidget" name="layoutWidget">
+  <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
-     <x>16</x>
-     <y>16</y>
-     <width>353</width>
+     <x>15</x>
+     <y>15</y>
+     <width>395</width>
      <height>351</height>
     </rect>
    </property>
@@ -60,6 +60,13 @@
        <widget class="QPushButton" name="m_zamowienia">
         <property name="text">
          <string>Moje zamówienia</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="sklep_info">
+        <property name="text">
+         <string>Informacje o sklepie</string>
         </property>
        </widget>
       </item>
