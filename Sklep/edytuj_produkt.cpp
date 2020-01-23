@@ -12,6 +12,7 @@ Edytuj_produkt::Edytuj_produkt(QWidget *parent) :
     ui(new Ui::Edytuj_produkt)
 {
     ui->setupUi(this);
+    this->setWindowTitle("Edytuj produkt");
 
     QString produkt_ = this->parentWidget()->findChild<QLabel *>("produkt")->text();
     QString opis_ = this->parentWidget()->findChild<QLabel *>("opis")->text();

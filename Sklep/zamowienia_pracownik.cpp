@@ -12,6 +12,7 @@ Zamowienia_pracownik::Zamowienia_pracownik(QWidget *parent) :
     ui(new Ui::Zamowienia_pracownik)
 {
     ui->setupUi(this);
+    this->setWindowTitle("Zamówienia");
 
     ui->tab_w_trakcie->setColumnWidth(0,40);
     ui->tab_w_trakcie->setColumnWidth(1,100);
@@ -28,7 +29,29 @@ Zamowienia_pracownik::Zamowienia_pracownik(QWidget *parent) :
     ui->tab_zrealizowane->setColumnWidth(5,150);
 
     ui->tab->setCurrentIndex(0);
+
+    ui->tab_zrealizowane->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tab_zrealizowane->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tab_zrealizowane->setSelectionMode(QAbstractItemView::SingleSelection);
+
+    ui->tab_w_trakcie->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tab_w_trakcie->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tab_w_trakcie->setSelectionMode(QAbstractItemView::SingleSelection);
+
     zamowienia();
+
+    ui->tab->setCurrentIndex(0);
+    ui->tab_zrealizowane->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tab_zrealizowane->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tab_zrealizowane->setSelectionMode(QAbstractItemView::SingleSelection);
+    //ui->tab_zrealizowane->setCurrentIndex(ui->tab_zrealizowane->model()->index(0,0));
+    ui->tab_zrealizowane->selectRow(0);
+
+    ui->tab_w_trakcie->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tab_w_trakcie->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tab_w_trakcie->setSelectionMode(QAbstractItemView::SingleSelection);
+    //ui->tab_w_trakcie->setCurrentIndex(ui->tab_zrealizowane->model()->index(0,0));
+    ui->tab_w_trakcie->selectRow(0);
 }
 
 Zamowienia_pracownik::~Zamowienia_pracownik()
@@ -78,4 +101,6 @@ void Zamowienia_pracownik::zamowienia()
     }
     else
         QMessageBox::warning(this, "Błąd", "Błąd połączenia!");
+
+
 }

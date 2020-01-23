@@ -16,6 +16,7 @@ Produkt_pracownik::Produkt_pracownik(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->opis->setWordWrap(true);
+    this->setWindowTitle("Produkt");
     info();
 }
 

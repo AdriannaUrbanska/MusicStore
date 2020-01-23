@@ -14,6 +14,7 @@ Dodaj_produkt::Dodaj_produkt(QWidget *parent) :
     ui(new Ui::Dodaj_produkt)
 {
     ui->setupUi(this);
+    this->setWindowTitle("Dodaj produkt");
 
     QSqlQuery query(db);
 

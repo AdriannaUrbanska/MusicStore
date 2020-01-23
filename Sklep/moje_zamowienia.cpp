@@ -5,6 +5,7 @@
 #include <QSqlDatabase>
 #include <QMessageBox>
 #include <QDebug>
+#include <QAbstractItemView>
 
 extern QSqlDatabase db;
 
@@ -13,6 +14,7 @@ Moje_zamowienia::Moje_zamowienia(QWidget *parent) :
     ui(new Ui::Moje_zamowienia)
 {
     ui->setupUi(this);
+    this->setWindowTitle("Moje zamówienia");
     QString login_ = this->parentWidget()->findChild<QLabel*>("login")->text();
 
     setWindowTitle("Moje zamowienia - uzytkownik: " + login_);
@@ -26,9 +28,18 @@ Moje_zamowienia::Moje_zamowienia(QWidget *parent) :
     ui->tab_w_trakcie->setColumnWidth(2,120);
     ui->tab_w_trakcie->setColumnWidth(3,160);
 
-    ui->tab->setCurrentIndex(0);
-
     zamowienia();
+
+    ui->tab->setCurrentIndex(0);
+    ui->tab_zrealizowane->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tab_zrealizowane->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tab_zrealizowane->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->tab_zrealizowane->selectRow(0);
+
+    ui->tab_w_trakcie->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tab_w_trakcie->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tab_w_trakcie->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->tab_w_trakcie->selectRow(0);
 }
 
 void Moje_zamowienia::zamowienia()
@@ -81,4 +92,10 @@ void Moje_zamowienia::on_powrot_clicked()
 void Moje_zamowienia::on_anuluj_clicked()
 {
 
+}
+
+void Moje_zamowienia::on_ocena_clicked()
+{
+    o = new Ocena(this);
+    o->show();
 }

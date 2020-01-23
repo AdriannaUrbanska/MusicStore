@@ -31,7 +31,7 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>16</x>
@@ -83,13 +83,13 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="wtrakcie">
        <attribute name="title">
         <string>W trakcie realizacji</string>
        </attribute>
-       <widget class="QWidget" name="">
+       <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
           <x>2</x>
@@ -155,7 +155,7 @@
        <attribute name="title">
         <string>Zrealizowane</string>
        </attribute>
-       <widget class="QWidget" name="">
+       <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
           <x>4</x>
@@ -202,7 +202,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="ocen_2">
+          <widget class="QPushButton" name="ocena">
            <property name="maximumSize">
             <size>
              <width>510</width>
@@ -216,9 +216,6 @@
          </item>
         </layout>
        </widget>
-       <zorder>tab_zrealizowane</zorder>
-       <zorder>tab_zrealizowane</zorder>
-       <zorder>ocen_2</zorder>
       </widget>
      </widget>
     </item>

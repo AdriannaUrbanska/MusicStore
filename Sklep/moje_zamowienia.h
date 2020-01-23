@@ -2,6 +2,7 @@
 #define MOJE_ZAMOWIENIA_H
 
 #include <QDialog>
+#include "ocena.h"
 
 namespace Ui {
 class Moje_zamowienia;
@@ -21,8 +22,11 @@ private slots:
 
     void on_anuluj_clicked();
 
+    void on_ocena_clicked();
+
 private:
     Ui::Moje_zamowienia *ui;
+    Ocena *o;
 };
 
 #endif // MOJE_ZAMOWIENIA_H

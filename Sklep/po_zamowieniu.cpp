@@ -7,6 +7,7 @@ Po_zamowieniu::Po_zamowieniu(QWidget *parent) :
     ui(new Ui::Po_zamowieniu)
 {
     ui->setupUi(this);
+    this->setWindowTitle("Zamówienie");
 }
 
 Po_zamowieniu::~Po_zamowieniu()

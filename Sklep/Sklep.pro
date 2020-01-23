@@ -40,7 +40,8 @@ SOURCES += main.cpp\
     edytuj_produkt.cpp \
     zamowienia_pracownik.cpp \
     produkt_pracownik.cpp \
-    externs.cpp
+    externs.cpp \
+    ocena.cpp
 
 HEADERS  += mainwindow.h \
     sklep.h \
@@ -54,7 +55,8 @@ HEADERS  += mainwindow.h \
     edytuj_produkt.h \
     zamowienia_pracownik.h \
     produkt_pracownik.h \
-    externs.h
+    externs.h \
+    ocena.h
 
 FORMS    += mainwindow.ui \
     sklep.ui \
@@ -67,4 +69,5 @@ FORMS    += mainwindow.ui \
     dodaj_produkt.ui \
     edytuj_produkt.ui \
     zamowienia_pracownik.ui \
-    produkt_pracownik.ui
+    produkt_pracownik.ui \
+    ocena.ui
