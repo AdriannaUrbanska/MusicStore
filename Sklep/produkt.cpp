@@ -18,6 +18,9 @@ Produkt::Produkt(QWidget *parent) :
     ui->opis->setWordWrap(true);
 
     info();
+
+    if(ui->sztuki->text() == "Brak dostępnych sztuk" || ui->cena->text() == "Brak ceny")
+        ui->zamawiam->setDisabled(true);
 }
 
 Produkt::~Produkt()

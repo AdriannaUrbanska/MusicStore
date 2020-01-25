@@ -96,6 +96,9 @@
         <property name="decimals">
          <number>2</number>
         </property>
+        <property name="minimum">
+         <double>0.010000000000000</double>
+        </property>
         <property name="maximum">
          <double>9999999.990000000223517</double>
         </property>

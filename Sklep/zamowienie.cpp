@@ -77,9 +77,11 @@ void Zamowienie::on_zamawiam_clicked()
         }
     }
     else
-        QMessageBox::warning(this, "Błąd", "Błąd połączenia!");
+        QMessageBox::warning(this, "Błąd", "Błąd połączenia!1");
 
-
+    qDebug()<<"INSERT INTO zamowienie(id_zamowienie, login, id_przesylka, liczba_sztuk, do_zaplaty, data_zamowienia) VALUES(" +
+              id_ + ", '" + login_ + "', " + id_przesylka_ + ", "
+              + liczba_sztuk_ + ", " + do_zaplaty_ + ", '" + data_zamowienia_ + "')";
     if(query.exec("INSERT INTO zamowienie(id_zamowienie, login, id_przesylka, liczba_sztuk, do_zaplaty, data_zamowienia) VALUES(" +
                    id_ + ", '" + login_ + "', " + id_przesylka_ + ", "
                    + liczba_sztuk_ + ", " + do_zaplaty_ + ", '" + data_zamowienia_ + "')"))
@@ -91,15 +93,15 @@ void Zamowienie::on_zamawiam_clicked()
             p_z->show();
         }
         else
-            QMessageBox::warning(this, "Błąd", "Błąd połączenia!");
+            QMessageBox::warning(this, "Błąd", "Błąd połączenia!2");
     }
     else
-        QMessageBox::warning(this, "Błąd", "Błąd połączenia!");
+        QMessageBox::warning(this, "Błąd", "Błąd połączenia!3");
 
 
     if(!query.exec("SELECT * FROM sztuki('" + produkt_ + "', " + liczba_sztuk_ + ")"))
     {
-        QMessageBox::warning(this, "Błąd", "Błąd połączenia!");
+        QMessageBox::warning(this, "Błąd", "Błąd połączenia!4");
     }
 }
 

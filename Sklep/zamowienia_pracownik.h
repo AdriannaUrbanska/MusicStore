@@ -16,13 +16,19 @@ public:
     explicit Zamowienia_pracownik(QWidget *parent = 0);
     ~Zamowienia_pracownik();
 
+    int i_w_trakcie;
+    int i_zrealizowane;
+
 private slots:
     void on_powrot_clicked();
 
     void zamowienia();
+
     void on_oznacz_clicked();
 
     void on_szczegoly_clicked();
+
+    void zmien(int);
 
 private:
     Ui::Zamowienia_pracownik *ui;

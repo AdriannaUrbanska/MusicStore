@@ -16,11 +16,6 @@ void connection()
     db.setPort(5432);
     bool ok = db.open();
 
-//    if(ok)
-//        QMessageBox::information(this, "Connection", "Connection OK");
-//    else
-//        QMessageBox::warning(this, "Connection", "ERROR");
-
     if(ok)
         qDebug()<<"OK\n";
     else

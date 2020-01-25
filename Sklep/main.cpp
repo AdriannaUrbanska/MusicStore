@@ -12,7 +12,6 @@ int main(int argc, char *argv[])
     connection();
     MainWindow w;
     w.show();
-    //close();
 
     return a.exec();
 }

@@ -40,7 +40,6 @@ SOURCES += main.cpp\
     edytuj_produkt.cpp \
     zamowienia_pracownik.cpp \
     produkt_pracownik.cpp \
-    externs.cpp \
     ocena.cpp \
     zamowienie_info.cpp \
     zamowienie_pracownik_info.cpp \

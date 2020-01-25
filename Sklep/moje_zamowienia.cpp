@@ -29,6 +29,7 @@ Moje_zamowienia::Moje_zamowienia(QWidget *parent) :
     ui->tab_w_trakcie->setColumnWidth(3,160);
 
     zamowienia();
+    zmien(0);
 
     ui->tab->setCurrentIndex(0);
     ui->tab_zrealizowane->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -42,10 +43,15 @@ Moje_zamowienia::Moje_zamowienia(QWidget *parent) :
     ui->tab_w_trakcie->selectRow(0);
 
     if(ui->tab_w_trakcie->rowCount() == 0)
+    {
         ui->anuluj->setDisabled(true);
+        ui->info->setDisabled(true);
+    }
 
     if(ui->tab_zrealizowane->rowCount() == 0)
         ui->ocena->setDisabled(true);
+
+    connect(ui->tab, SIGNAL(currentChanged(int)), this, SLOT(zmien(int)));
 }
 
 void Moje_zamowienia::zamowienia()
@@ -53,9 +59,10 @@ void Moje_zamowienia::zamowienia()
     QString login_ = this->parentWidget()->findChild<QLabel*>("login")->text();
     ui->login->setText(login_);
 
-    int i_w_trakcie = 0;
-    int i_zrealizowane = 0;
     QSqlQuery query(db);
+
+    i_w_trakcie = 0;
+    i_zrealizowane = 0;
 
     if(query.exec("SELECT * FROM wyszukaj_zamowienia('" + login_ + "')"))
     {
@@ -83,6 +90,11 @@ void Moje_zamowienia::zamowienia()
                 ui->tab_zrealizowane->setItem(i_zrealizowane,4,new QTableWidgetItem(query.value(4).toString()));
                 i_zrealizowane++;
             }
+
+            if(i_w_trakcie != 0)
+                ui->tab_w_trakcie->selectRow(0);
+            if(i_zrealizowane != 0)
+                ui->tab_zrealizowane->selectRow(0);
         }
     }
     else
@@ -141,6 +153,7 @@ void Moje_zamowienia::on_anuluj_clicked()
         {
             QMessageBox::warning(this, "Błąd", "Błąd połączenia!");
         }
+
     }
 }
 
@@ -154,4 +167,28 @@ void Moje_zamowienia::on_info_clicked()
 {
     zi = new Zamowienie_info(this);
     zi->show();
+}
+
+void Moje_zamowienia::zmien(int i)
+{
+    if(ui->tab->currentIndex() == 0)
+    {
+        if(i_w_trakcie == 0)
+            ui->info->setDisabled(true);
+        else
+        {
+            ui->info->setEnabled(true);
+            ui->tab_w_trakcie->selectRow(0);
+        }
+    }
+    else
+    {
+        if(i_zrealizowane == 0)
+            ui->info->setDisabled(true);
+        else
+        {
+            ui->info->setEnabled(true);
+            ui->tab_zrealizowane->selectRow(0);
+        }
+    }
 }

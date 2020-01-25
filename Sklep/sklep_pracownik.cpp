@@ -140,7 +140,7 @@ void Sklep_pracownik::on_szukaj_clicked()
 
     QSqlQuery query(db);
 
-    if(query.exec("SELECT n FROM produkty WHERE n LIKE '" + nazwa_ + "'"))
+    if(query.exec("SELECT n FROM produkty WHERE n LIKE '" + nazwa_ + "%'"))
     {
         ui->listWidget->clear();
         while(query.next())

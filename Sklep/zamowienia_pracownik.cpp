@@ -40,6 +40,7 @@ Zamowienia_pracownik::Zamowienia_pracownik(QWidget *parent) :
     ui->tab_w_trakcie->setSelectionMode(QAbstractItemView::SingleSelection);
 
     zamowienia();
+    zmien(0);
 
     ui->tab->setCurrentIndex(0);
     ui->tab_zrealizowane->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -53,7 +54,12 @@ Zamowienia_pracownik::Zamowienia_pracownik(QWidget *parent) :
     ui->tab_w_trakcie->selectRow(0);
 
     if(ui->tab_w_trakcie->rowCount() == 0)
+    {
         ui->oznacz->setDisabled(true);
+        ui->szczegoly->setDisabled(true);
+    }
+
+    connect(ui->tab, SIGNAL(currentChanged(int)), this, SLOT(zmien(int)));
 }
 
 Zamowienia_pracownik::~Zamowienia_pracownik()
@@ -68,8 +74,8 @@ void Zamowienia_pracownik::on_powrot_clicked()
 
 void Zamowienia_pracownik::zamowienia()
 {
-    int i_w_trakcie = 0;
-    int i_zrealizowane = 0;
+    i_w_trakcie = 0;
+    i_zrealizowane = 0;
 
     QSqlQuery query(db);
 
@@ -101,6 +107,12 @@ void Zamowienia_pracownik::zamowienia()
                 i_zrealizowane++;
             }
         }
+
+        if(i_w_trakcie != 0)
+            ui->tab_w_trakcie->selectRow(0);
+        if(i_zrealizowane != 0)
+            ui->tab_zrealizowane->selectRow(0);
+
     }
     else
         QMessageBox::warning(this, "Błąd", "Błąd połączenia!");
@@ -120,16 +132,19 @@ void Zamowienia_pracownik::on_oznacz_clicked()
     if (button == QMessageBox::Yes)
     {
         QSqlQuery query(db);
-//        qDebug()<<"UPDATE zamowienie SET data_wyslania = '" + data_ + "' WHERE id_zamowienie = " + zamowienie_;
         if(query.exec("UPDATE zamowienie SET data_wyslania = '" + data_ + "' WHERE id_zamowienie = " + zamowienie_))
         {
             QMessageBox::information(this, "Oznacz jako zrealizowane", "Zamówienie zostało oznaczone jako zrealizowane!");
             ui->tab_w_trakcie->setRowCount(0);
             ui->tab_zrealizowane->setRowCount(0);
             zamowienia();
+            zmien(0);
 
             if(ui->tab_w_trakcie->rowCount() == 0)
+            {
                 ui->oznacz->setDisabled(true);
+                ui->szczegoly->setDisabled(true);
+            }
         }
         else
             QMessageBox::warning(this, "Błąd", "Błąd połączenia!");
@@ -140,4 +155,28 @@ void Zamowienia_pracownik::on_szczegoly_clicked()
 {
     zpi = new Zamowienie_pracownik_info(this);
     zpi->show();
+}
+
+void Zamowienia_pracownik::zmien(int i)
+{
+    if(ui->tab->currentIndex() == 0)
+    {
+        if(i_w_trakcie == 0)
+            ui->szczegoly->setDisabled(true);
+        else
+        {
+            ui->szczegoly->setEnabled(true);
+            ui->tab_w_trakcie->selectRow(0);
+        }
+    }
+    else
+    {
+        if(i_zrealizowane == 0)
+            ui->szczegoly->setDisabled(true);
+        else
+        {
+            ui->szczegoly->setEnabled(true);
+            ui->tab_zrealizowane->selectRow(0);
+        }
+    }
 }

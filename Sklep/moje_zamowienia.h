@@ -16,6 +16,8 @@ class Moje_zamowienia : public QDialog
 public:
     explicit Moje_zamowienia(QWidget *parent = 0);
     ~Moje_zamowienia();
+    int i_w_trakcie;
+    int i_zrealizowane;
 
 private slots:
     void on_powrot_clicked();
@@ -26,6 +28,8 @@ private slots:
     void on_ocena_clicked();
 
     void on_info_clicked();
+
+    void zmien(int);
 
 private:
     Ui::Moje_zamowienia *ui;
