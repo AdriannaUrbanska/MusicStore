@@ -4,15 +4,15 @@ Projekt przedstawia aplikację bazodanową dla sklepu muzycznego, zrealizowaną 
 
 Poniżej przedstawiona została zawartość katalogów umieszczonych w repozytorium.
 
-## Diagramy
+### Diagramy
 - diagram przepływu danych DFD
 - diagram związków encji ERD
 
-## Raport
+### Raport
 - program w języku C generujący raport wszystkich zamówień w postaci pliku w formacie txt
 
-## SQL
+### SQL
 - pliki SQL zawierające przygotowane funkcje i widoki, skrypt tworzący tabele w bazie oraz uzupełniający je przykładowymi danymi
 
-## Sklep
+### Sklep
 - aplikacja zrealizowana w QT Creator
