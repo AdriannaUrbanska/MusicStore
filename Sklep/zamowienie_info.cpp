@@ -61,7 +61,7 @@ void Zamowienie_info::info()
 
     QSqlQuery query(db);
 
-    if(query.exec("SELECT * FROM wyszukaj_zamowienia('" + login_ + "', " + id_ + ")"))
+    if(query.exec("SELECT * FROM sklep.wyszukaj_zamowienia('" + login_ + "', " + id_ + ")"))
     {
         while(query.next())
         {
@@ -80,15 +80,18 @@ void Zamowienie_info::info()
     else
         QMessageBox::warning(this, "Błąd", "Błąd połączenia!");
 
+    if(opis_ == "")
+        opis_ = "Brak opisu";
+
     ui->id->setText(id_);
     ui->produkt->setText(produkt_);
     ui->kategoria->setText(kategoria_);
     ui->opis->setText(opis_);
-    ui->cena->setText(cena_);
+    ui->cena->setText(cena_ + "zł");
     ui->sztuki->setText(sztuki_);
     ui->przesylka->setText(przesylka_);
-    ui->cena_przesylki->setText(cena_przesylki_);
-    ui->do_zaplaty->setText(do_zaplaty_);
+    ui->cena_przesylki->setText(cena_przesylki_ + "zł");
+    ui->do_zaplaty->setText(do_zaplaty_ + "zł");
     ui->data_zamowienia->setText(data_);
     ui->status->setText(status_);
 }

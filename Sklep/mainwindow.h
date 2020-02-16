@@ -11,7 +11,9 @@ class Nowy_uzytkownik;
 namespace Ui {
 class MainWindow;
 }
-
+/**
+ *  Klasa MainWindow okna logowania do sklepu
+ */
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -25,10 +27,19 @@ protected:
 
 private slots:
 
+    /**
+     * Metoda realizowana po naciśnięciu przycisku 'Pokaż hasło'
+     */
     void on_pokaz_haslo_clicked();
 
+    /**
+     * Metoda realizowana po naciśnięciu przycisku 'Zaloguj'
+     */
     void on_zaloguj_clicked();
 
+    /**
+     * Metoda realizowana po naciśnięciu przycisku 'Utwórz konto klienta'
+     */
     void on_konto_clicked();
 
 private:

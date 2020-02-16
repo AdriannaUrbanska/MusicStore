@@ -46,13 +46,13 @@ void Ocena::on_dodaj_clicked()
     else
     {
         QSqlQuery query(db);
-        if(query.exec("SELECT * FROM sprawdz_ocena('" + login_ + "', '" + produkt_ + "')"))
+        if(query.exec("SELECT * FROM sklep.sprawdz_ocena('" + login_ + "', '" + produkt_ + "')"))
         {
             while(query.next())
             {
                 if(query.value(0).toString() == "NIE")
                 {
-                    if(query.exec("INSERT INTO ocena_produktu VALUES ('"+ produkt_ + "', '" + login_ + "', " + ocena_ + ", '" + komentarz_ + "')"))
+                    if(query.exec("INSERT INTO sklep.ocena_produktu VALUES ('"+ produkt_ + "', '" + login_ + "', " + ocena_ + ", '" + komentarz_ + "')"))
                     {
                         QMessageBox::information(this, "Ocena produktu", "Ocena została dodana!");
                         this->close();
@@ -62,7 +62,7 @@ void Ocena::on_dodaj_clicked()
                 }
                 else
                 {
-                    if(query.exec("UPDATE ocena_produktu SET ocena = " + ocena_ + ", komentarz = '" + komentarz_ +
+                    if(query.exec("UPDATE sklep.ocena_produktu SET ocena = " + ocena_ + ", komentarz = '" + komentarz_ +
                                   "' WHERE login LIKE '" + login_ + "' AND nazwa_produktu LIKE '" + produkt_ + "'"))
                     {
                         QMessageBox::information(this, "Ocena produktu", "Ocena została zmieniona!");
@@ -85,13 +85,13 @@ void Ocena::ustaw()
     int idx = this->parentWidget()->findChild<QTableWidget*>("tab_zrealizowane")->currentRow();
     QString produkt_ = this->parentWidget()->findChild<QTableWidget*>("tab_zrealizowane")->item(idx,0)->text();
 
-    if(query.exec("SELECT * FROM sprawdz_ocena('" + login_ + "', '" + produkt_ + "')"))
+    if(query.exec("SELECT * FROM sklep.sprawdz_ocena('" + login_ + "', '" + produkt_ + "')"))
     {
         while(query.next())
         {
             if(query.value(0).toString() == "TAK")
             {
-                if(query.exec("SELECT ocena, komentarz FROM ocena_produktu WHERE login LIKE '" + login_ +
+                if(query.exec("SELECT ocena, komentarz FROM sklep.ocena_produktu WHERE login LIKE '" + login_ +
                               "' AND nazwa_produktu LIKE '" + produkt_ + "'"))
                 {
                     while(query.next())
@@ -123,7 +123,7 @@ void Ocena::on_usun_clicked()
         int idx = this->parentWidget()->findChild<QTableWidget*>("tab_zrealizowane")->currentRow();
         QString produkt_ = this->parentWidget()->findChild<QTableWidget*>("tab_zrealizowane")->item(idx,0)->text();
 
-        if(query.exec("DELETE FROM ocena_produktu WHERE login LIKE '" + login_ +
+        if(query.exec("DELETE FROM sklep.ocena_produktu WHERE login LIKE '" + login_ +
                       "' AND nazwa_produktu LIKE '" + produkt_ + "'"))
         {
             QMessageBox::information(this, "Ocena produktu", "Ocena została usunięta!");

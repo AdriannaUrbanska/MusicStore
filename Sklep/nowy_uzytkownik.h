@@ -9,7 +9,9 @@ class Sklep;
 namespace Ui {
 class Nowy_uzytkownik;
 }
-
+/**
+ *  Klasa Nowy_uzytkownik okna tworzenia nowego konta klienta
+ */
 class Nowy_uzytkownik : public QDialog
 {
     Q_OBJECT
@@ -21,8 +23,14 @@ protected:
     void closeEvent(QCloseEvent *event) override;
 
 private slots:
+    /**
+     * Metoda realizowana po naciśnięciu przycisku 'Powrót'
+     */
     void on_powrot_clicked();
 
+    /**
+     * Metoda realizowana po naciśnięciu przycisku 'Utwórz konto'
+     */
     void on_utworz_konto_clicked();
 
 private:

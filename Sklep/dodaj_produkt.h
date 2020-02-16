@@ -3,10 +3,13 @@
 
 #include <QDialog>
 
+
 namespace Ui {
 class Dodaj_produkt;
 }
-
+/**
+ *  Klasa Dodaj_produkt okna dodawania nowego produktu do bazy.
+ */
 class Dodaj_produkt : public QDialog
 {
     Q_OBJECT
@@ -16,8 +19,14 @@ public:
     ~Dodaj_produkt();
 
 private slots:
+    /**
+     * Metoda realizowana po naciśnięciu przycisku 'Powrót'
+     */
     void on_powrot_clicked();
 
+    /**
+     * Metoda realizowana po naciśnięciu przycisku 'Dodaj produkt'
+     */
     void on_dodaj_clicked();
 
 private:

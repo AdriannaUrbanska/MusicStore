@@ -50,7 +50,7 @@ void MainWindow::on_zaloguj_clicked()
 
     if(ui->radioKlient->isChecked())
     {
-        if(query.exec("SELECT * FROM uzytkownicy_K"))
+        if(query.exec("SELECT * FROM sklep.uzytkownicy_K"))
         {
             while(query.next())
             {
@@ -76,7 +76,7 @@ void MainWindow::on_zaloguj_clicked()
     }
     else
     {
-        if(query.exec("SELECT * FROM uzytkownicy_P"))
+        if(query.exec("SELECT * FROM sklep.uzytkownicy_P"))
         {
             while(query.next())
             {

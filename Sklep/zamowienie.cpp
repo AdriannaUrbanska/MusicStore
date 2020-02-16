@@ -24,7 +24,7 @@ Zamowienie::Zamowienie(QWidget *parent) :
 
     QSqlQuery query(db);
 
-    if(query.exec("SELECT opcja_dostawy, cena_dostawy, czas_oczekiwania FROM przesylka"))
+    if(query.exec("SELECT opcja_dostawy, cena_dostawy, czas_oczekiwania FROM sklep.przesylka"))
     {
         while(query.next())
         {
@@ -66,10 +66,10 @@ void Zamowienie::on_zamawiam_clicked()
     QString liczba_sztuk_ = QString::number(ui->sztuki->value());
     int len_ = ui->do_zaplaty->text().length();
     QString do_zaplaty_ = ui->do_zaplaty->text().left(len_ - 2);
-    QString data_zamowienia_ = QDate::currentDate().toString("MM-dd-yyyy");
+    QString data_zamowienia_ = QDate::currentDate().toString("dd-MM-yyyy");
     QString produkt_ = ui->produkt->text();
 
-    if(query.exec("SELECT * FROM id_zamowienie_next"))
+    if(query.exec("SELECT * FROM sklep.id_zamowienie_next"))
     {
         while(query.next())
         {
@@ -79,14 +79,14 @@ void Zamowienie::on_zamawiam_clicked()
     else
         QMessageBox::warning(this, "Błąd", "Błąd połączenia!1");
 
-    qDebug()<<"INSERT INTO zamowienie(id_zamowienie, login, id_przesylka, liczba_sztuk, do_zaplaty, data_zamowienia) VALUES(" +
-              id_ + ", '" + login_ + "', " + id_przesylka_ + ", "
-              + liczba_sztuk_ + ", " + do_zaplaty_ + ", '" + data_zamowienia_ + "')";
-    if(query.exec("INSERT INTO zamowienie(id_zamowienie, login, id_przesylka, liczba_sztuk, do_zaplaty, data_zamowienia) VALUES(" +
+    if(id_ == "")
+        id_ = '1';
+
+    if(query.exec("INSERT INTO sklep.zamowienie(id_zamowienie, login, id_przesylka, liczba_sztuk, do_zaplaty, data_zamowienia) VALUES(" +
                    id_ + ", '" + login_ + "', " + id_przesylka_ + ", "
                    + liczba_sztuk_ + ", " + do_zaplaty_ + ", '" + data_zamowienia_ + "')"))
     {
-        if(query.exec("INSERT INTO produkt_zamowienie VALUES(" + id_ + ", '" + produkt_ + "')"))
+        if(query.exec("INSERT INTO sklep.produkt_zamowienie VALUES(" + id_ + ", '" + produkt_ + "')"))
         {
             QMessageBox::information(this, "Zamówienie", "Zamówienie zostało przyjęte!");
             p_z = new Po_zamowieniu(this);
@@ -99,7 +99,7 @@ void Zamowienie::on_zamawiam_clicked()
         QMessageBox::warning(this, "Błąd", "Błąd połączenia!3");
 
 
-    if(!query.exec("SELECT * FROM sztuki('" + produkt_ + "', " + liczba_sztuk_ + ")"))
+    if(!query.exec("SELECT * FROM sklep.sztuki('" + produkt_ + "', " + liczba_sztuk_ + ")"))
     {
         QMessageBox::warning(this, "Błąd", "Błąd połączenia!4");
     }

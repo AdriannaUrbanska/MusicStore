@@ -45,7 +45,7 @@ void Sklep_info::ustaw()
     QString kod_ = "";
     QString kraj_ = "";
 
-    if(query.exec("SELECT * FROM sklep_info WHERE id_sklep = 1"))
+    if(query.exec("SELECT * FROM sklep.sklep_info WHERE id_sklep = 1"))
     {
         while(query.next())
         {
@@ -59,7 +59,7 @@ void Sklep_info::ustaw()
     else
         QMessageBox::warning(this, "Błąd", "Błąd połączenia!");
 
-    if(query.exec("SELECT * FROM adres WHERE id_adres = " + id_adres_))
+    if(query.exec("SELECT * FROM sklep.adres WHERE id_adres = " + id_adres_))
     {
         while(query.next())
         {

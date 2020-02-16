@@ -7,7 +7,9 @@
 namespace Ui {
 class Produkt;
 }
-
+/**
+ *  Klasa Produkt okna informacji o produkcie dla klienta
+ */
 class Produkt : public QDialog
 {
     Q_OBJECT
@@ -17,10 +19,19 @@ public:
     ~Produkt();
 
 private slots:
+    /**
+     * Metoda realizowana po naciśnięciu przycisku 'Zamawiam'
+     */
     void on_zamawiam_clicked();
 
+    /**
+     * Metoda realizowana po naciśnięciu przycisku 'Powrót'
+     */
     void on_powrot_clicked();
 
+    /**
+     * Metoda aktualizująca pola informacji o produkcie
+     */
     void info();
 
 private:

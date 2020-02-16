@@ -27,7 +27,7 @@ Edytuj_produkt::Edytuj_produkt(QWidget *parent) :
 
     QSqlQuery query(db);
 
-    if(query.exec("SELECT id_kategoria AS id, nazwa FROM kategoria"))
+    if(query.exec("SELECT id_kategoria AS id, nazwa FROM sklep.kategoria"))
     {
         while(query.next())
         {
@@ -81,7 +81,7 @@ void Edytuj_produkt::on_zapisz_clicked()
         {
             QSqlQuery query(db);
 
-            if(query.exec("UPDATE produkt SET nazwa_produktu = '" + produkt_ + "', id_kategoria = " + kategoria_ + ", cena_produktu = " + cena_ +
+            if(query.exec("UPDATE sklep.produkt SET nazwa_produktu = '" + produkt_ + "', id_kategoria = " + kategoria_ + ", cena_produktu = " + cena_ +
                           ", opis_produktu = '" + opis_ + "', dostepna_liczba_sztuk = " + sztuki_ + " WHERE nazwa_produktu = '" + produkt_ + "'"))
             {
                 QMessageBox::information(this, "Zapisz zmiany", "Zmiany zostały zapisane!");

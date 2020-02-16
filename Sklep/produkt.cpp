@@ -50,7 +50,7 @@ void Produkt::info()
 
     QSqlQuery query(db);
 
-    if(query.exec("SELECT * FROM produkty WHERE n LIKE '" + produkt_ + "'"))
+    if(query.exec("SELECT * FROM sklep.produkty WHERE n LIKE '" + produkt_ + "'"))
     {
         while(query.next())
         {
@@ -63,7 +63,7 @@ void Produkt::info()
     else
         QMessageBox::warning(this, "Błąd", "Błąd połączenia!");
 
-    if(query.exec("SELECT * FROM ocena_produktu('" + produkt_ + "')"))
+    if(query.exec("SELECT * FROM sklep.ocena_produktu('" + produkt_ + "')"))
     {
         while(query.next())
         {

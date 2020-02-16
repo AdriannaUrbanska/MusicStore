@@ -60,6 +60,9 @@ Zamowienia_pracownik::Zamowienia_pracownik(QWidget *parent) :
     }
 
     connect(ui->tab, SIGNAL(currentChanged(int)), this, SLOT(zmien(int)));
+
+    connect(ui->tab_w_trakcie, SIGNAL(activated(QModelIndex)), this, SLOT(openInfo(QModelIndex)));
+    connect(ui->tab_zrealizowane, SIGNAL(activated(QModelIndex)), this, SLOT(openInfo(QModelIndex)));
 }
 
 Zamowienia_pracownik::~Zamowienia_pracownik()
@@ -79,7 +82,7 @@ void Zamowienia_pracownik::zamowienia()
 
     QSqlQuery query(db);
 
-    if(query.exec("SELECT * FROM wszystkie_zamowienia()"))
+    if(query.exec("SELECT * FROM sklep.wszystkie_zamowienia()"))
     {
         while(query.next())
         {
@@ -120,7 +123,7 @@ void Zamowienia_pracownik::zamowienia()
 
 void Zamowienia_pracownik::on_oznacz_clicked()
 {
-    QString data_ = QDate::currentDate().toString("MM-dd-yyyy");
+    QString data_ = QDate::currentDate().toString("dd-MM-yyyy");
     int idx = ui->tab_w_trakcie->currentRow();
     QString zamowienie_ = ui->tab_w_trakcie->item(idx,0)->text();
 
@@ -132,7 +135,7 @@ void Zamowienia_pracownik::on_oznacz_clicked()
     if (button == QMessageBox::Yes)
     {
         QSqlQuery query(db);
-        if(query.exec("UPDATE zamowienie SET data_wyslania = '" + data_ + "' WHERE id_zamowienie = " + zamowienie_))
+        if(query.exec("UPDATE sklep.zamowienie SET data_wyslania = '" + data_ + "' WHERE id_zamowienie = " + zamowienie_))
         {
             QMessageBox::information(this, "Oznacz jako zrealizowane", "Zamówienie zostało oznaczone jako zrealizowane!");
             ui->tab_w_trakcie->setRowCount(0);
@@ -179,4 +182,9 @@ void Zamowienia_pracownik::zmien(int i)
             ui->tab_zrealizowane->selectRow(0);
         }
     }
+}
+
+void Zamowienia_pracownik::openInfo(const QModelIndex &)
+{
+    on_szczegoly_clicked();
 }

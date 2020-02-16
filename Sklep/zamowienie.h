@@ -9,7 +9,9 @@
 namespace Ui {
 class Zamowienie;
 }
-
+/**
+ *  Klasa Zamowienie okna zamawiania konkretnego produktu przez klienta
+ */
 class Zamowienie : public QDialog
 {
     Q_OBJECT
@@ -22,10 +24,19 @@ public:
     double cena_;
 
 private slots:
+    /**
+     * Metoda realizowana po naciśnięciu przycisku 'Powrót'
+     */
     void on_powrot_clicked();
 
+    /**
+     * Metoda realizowana po naciśnięciu przycisku 'Zamawiam'
+     */
     void on_zamawiam_clicked();
 
+    /**
+     * Metoda aktualizująca pola informacji o produkcie
+     */
     void ustaw(int = 1);
 
 private:

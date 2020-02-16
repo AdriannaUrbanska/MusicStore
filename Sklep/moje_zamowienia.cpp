@@ -22,11 +22,13 @@ Moje_zamowienia::Moje_zamowienia(QWidget *parent) :
     ui->tab_zrealizowane->setColumnWidth(1,80);
     ui->tab_zrealizowane->setColumnWidth(2,120);
     ui->tab_zrealizowane->setColumnWidth(3,160);
+    ui->tab_zrealizowane->setColumnWidth(4,50);
 
     ui->tab_w_trakcie->setColumnWidth(0,150);
     ui->tab_w_trakcie->setColumnWidth(1,80);
     ui->tab_w_trakcie->setColumnWidth(2,120);
     ui->tab_w_trakcie->setColumnWidth(3,160);
+    ui->tab_w_trakcie->setColumnWidth(4,50);
 
     zamowienia();
     zmien(0);
@@ -52,6 +54,9 @@ Moje_zamowienia::Moje_zamowienia(QWidget *parent) :
         ui->ocena->setDisabled(true);
 
     connect(ui->tab, SIGNAL(currentChanged(int)), this, SLOT(zmien(int)));
+
+    connect(ui->tab_w_trakcie, SIGNAL(activated(QModelIndex)), this, SLOT(openInfo(QModelIndex)));
+    connect(ui->tab_zrealizowane, SIGNAL(activated(QModelIndex)), this, SLOT(openInfo(QModelIndex)));
 }
 
 void Moje_zamowienia::zamowienia()
@@ -64,7 +69,7 @@ void Moje_zamowienia::zamowienia()
     i_w_trakcie = 0;
     i_zrealizowane = 0;
 
-    if(query.exec("SELECT * FROM wyszukaj_zamowienia('" + login_ + "')"))
+    if(query.exec("SELECT * FROM sklep.wyszukaj_zamowienia('" + login_ + "')"))
     {
         while(query.next())
         {    
@@ -124,7 +129,7 @@ void Moje_zamowienia::on_anuluj_clicked()
         QString produkt_ = ui->tab_w_trakcie->item(idx,0)->text();
         QString sztuki_ = "";
 
-        if(query.exec("SELECT liczba_sztuk FROM zamowienie WHERE id_zamowienie = " + zamowienie_))
+        if(query.exec("SELECT liczba_sztuk FROM sklep.zamowienie WHERE id_zamowienie = " + zamowienie_))
         {
             while(query.next())
             {
@@ -135,7 +140,7 @@ void Moje_zamowienia::on_anuluj_clicked()
             QMessageBox::warning(this, "Błąd", "Błąd połączenia!");
 
 
-        if(query.exec("DELETE FROM produkt_zamowienie WHERE id_zamowienie = " + zamowienie_))
+        if(query.exec("DELETE FROM sklep.produkt_zamowienie WHERE id_zamowienie = " + zamowienie_))
         {
             QMessageBox::information(this, "Anulowanie zamówienia", "Zamówienie zostało anulowane!");
             ui->tab_w_trakcie->setRowCount(0);
@@ -149,7 +154,7 @@ void Moje_zamowienia::on_anuluj_clicked()
             QMessageBox::warning(this, "Błąd", "Błąd połączenia!");
 
 
-        if(!query.exec("SELECT * FROM sztuki_dodaj('" + produkt_ + "', " + sztuki_ + ")"))
+        if(!query.exec("SELECT * FROM sklep.sztuki_dodaj('" + produkt_ + "', " + sztuki_ + ")"))
         {
             QMessageBox::warning(this, "Błąd", "Błąd połączenia!");
         }
@@ -191,4 +196,9 @@ void Moje_zamowienia::zmien(int i)
             ui->tab_zrealizowane->selectRow(0);
         }
     }
+}
+
+void Moje_zamowienia::openInfo(const QModelIndex &)
+{
+    on_info_clicked();
 }

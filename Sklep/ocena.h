@@ -6,7 +6,9 @@
 namespace Ui {
 class Ocena;
 }
-
+/**
+ *  Klasa Ocena okna dodawania oceny do zamówionego produktu
+ */
 class Ocena : public QDialog
 {
     Q_OBJECT
@@ -16,12 +18,24 @@ public:
     ~Ocena();
 
 private slots:
+    /**
+     * Metoda realizowana po naciśnięciu przycisku 'Powrót'
+     */
     void on_powrot_clicked();
 
+    /**
+     * Metoda realizowana po naciśnięciu przycisku 'Dodaj ocenę
+     */
     void on_dodaj_clicked();
 
+    /**
+     * Metoda aktualizująca pola do wypełnienia
+     */
     void ustaw();
 
+    /**
+     * Metoda realizowana po naciśnięciu przycisku 'Usuń ocenę'
+     */
     void on_usun_clicked();
 
 private:

@@ -46,7 +46,7 @@ void Produkt_pracownik::on_usun_clicked()
 
     if (button == QMessageBox::Yes)
     {
-        if(query.exec("DELETE FROM produkt WHERE nazwa_produktu LIKE '"+ nazwa_ + "'"))
+        if(query.exec("DELETE FROM sklep.produkt WHERE nazwa_produktu LIKE '"+ nazwa_ + "'"))
         {
             QMessageBox::information(this, "Usuń produkt", "Produkt został usunięty!");
             this->close();
@@ -55,7 +55,7 @@ void Produkt_pracownik::on_usun_clicked()
             this->parentWidget()->findChild<QComboBox*>("kategoria")->setCurrentText(0);
             this->parentWidget()->findChild<QComboBox*>("sortowanie")->setCurrentText(0);
 
-            if(query.exec("SELECT nazwa_produktu FROM produkt ORDER BY nazwa_produktu "))
+            if(query.exec("SELECT nazwa_produktu FROM sklep.produkt ORDER BY nazwa_produktu "))
             {
                 list->clear();
                 while(query.next())
@@ -67,7 +67,7 @@ void Produkt_pracownik::on_usun_clicked()
                 QMessageBox::warning(this, "Błąd", "Błąd połączenia!");
         }
         else
-            QMessageBox::warning(this, "Błąd", "Błąd połączenia!");
+            QMessageBox::warning(this, "Błąd", "Nie można usunąć tego produktu - naruszy to historię zamówień!");
     }
 }
 
@@ -81,7 +81,7 @@ void Produkt_pracownik::info()
 
     QSqlQuery query(db);
 
-    if(query.exec("SELECT * FROM produkty WHERE n LIKE '" + produkt_ + "'"))
+    if(query.exec("SELECT * FROM sklep.produkty WHERE n LIKE '" + produkt_ + "'"))
     {
         while(query.next())
         {

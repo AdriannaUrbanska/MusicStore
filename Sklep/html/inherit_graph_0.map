@@ -1,0 +1,17 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node2" href="$classDodaj__produkt.html" title="Dodaj_produkt" alt="" coords="163,5,269,32"/>
+<area shape="rect" id="node3" href="$classEdytuj__produkt.html" title="Edytuj_produkt" alt="" coords="161,56,271,83"/>
+<area shape="rect" id="node4" href="$classMoje__zamowienia.html" title="Moje_zamowienia" alt="" coords="153,107,279,133"/>
+<area shape="rect" id="node5" href="$classNowy__uzytkownik.html" title="Nowy_uzytkownik" alt="" coords="151,157,281,184"/>
+<area shape="rect" id="node6" href="$classOcena.html" title="Ocena" alt="" coords="186,208,246,235"/>
+<area shape="rect" id="node7" href="$classPo__zamowieniu.html" title="Po_zamowieniu" alt="" coords="159,259,273,285"/>
+<area shape="rect" id="node8" href="$classProdukt.html" title="Produkt" alt="" coords="183,309,249,336"/>
+<area shape="rect" id="node9" href="$classProdukt__pracownik.html" title="Produkt_pracownik" alt="" coords="149,360,283,387"/>
+<area shape="rect" id="node10" href="$classSklep.html" title="Sklep" alt="" coords="189,411,243,437"/>
+<area shape="rect" id="node11" href="$classSklep__info.html" title="Sklep_info" alt="" coords="175,461,257,488"/>
+<area shape="rect" id="node12" href="$classSklep__pracownik.html" title="Sklep_pracownik" alt="" coords="155,512,277,539"/>
+<area shape="rect" id="node13" href="$classZamowienia__pracownik.html" title="Zamowienia_pracownik" alt="" coords="137,563,295,589"/>
+<area shape="rect" id="node14" href="$classZamowienie.html" title="Zamowienie" alt="" coords="170,613,262,640"/>
+<area shape="rect" id="node15" href="$classZamowienie__info.html" title="Zamowienie_info" alt="" coords="156,664,276,691"/>
+<area shape="rect" id="node16" href="$classZamowienie__pracownik__info.html" title="Zamowienie_pracownik_info" alt="" coords="123,715,309,741"/>
+</map>

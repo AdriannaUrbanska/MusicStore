@@ -6,14 +6,17 @@
 
 QSqlDatabase db = QSqlDatabase::addDatabase("QPSQL");
 
+/**
+ * Funkcja nawiązująca połączenie z bazą danych
+ */
 void connection()
 {
     db.setConnectOptions();
     db.setHostName("localhost");
-    db.setDatabaseName("project");
-    db.setUserName("urbanska");
-    db.setPassword("project");
-    db.setPort(5432);
+    db.setDatabaseName("u7urbanska");
+    db.setUserName("u7urbanska");
+    db.setPassword("7urbanska");
+    db.setPort(54320);
     bool ok = db.open();
 
     if(ok)

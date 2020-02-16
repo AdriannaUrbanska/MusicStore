@@ -6,7 +6,9 @@
 namespace Ui {
 class Zamowienie_pracownik_info;
 }
-
+/**
+ *  Klasa Zamowienie_pracownik_info okna szczegółowych informacji o zamówieniu dla pracownika
+ */
 class Zamowienie_pracownik_info : public QDialog
 {
     Q_OBJECT
@@ -16,8 +18,14 @@ public:
     ~Zamowienie_pracownik_info();
 
 private slots:
+    /**
+     * Metoda realizowana po naciśnięciu przycisku 'Powrót'
+     */
     void on_powrot_clicked();
 
+    /**
+     * Metoda aktualizująca pola informacji o zamówieniu
+     */
     void info();
 
 private:

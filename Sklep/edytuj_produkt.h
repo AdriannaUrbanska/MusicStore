@@ -6,7 +6,9 @@
 namespace Ui {
 class Edytuj_produkt;
 }
-
+/**
+ *  Klasa Edytuj_produkt okna edytowania produktu.
+ */
 class Edytuj_produkt : public QDialog
 {
     Q_OBJECT
@@ -16,8 +18,14 @@ public:
     ~Edytuj_produkt();
 
 private slots:
+    /**
+     * Metoda realizowana po naciśnięciu przycisku 'Powrót'
+     */
     void on_powrot_clicked();
 
+    /**
+     * Metoda realizowana po naciśnięciu przycisku 'Zapisz produkt'
+     */
     void on_zapisz_clicked();
 
 private:

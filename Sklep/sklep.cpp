@@ -22,7 +22,7 @@ Sklep::Sklep(QWidget *parent) :
     ui->kategoria->addItem("Wszystkie");
     QSqlQuery query(db);
 
-    if(query.exec("SELECT nazwa FROM kategoria"))
+    if(query.exec("SELECT nazwa FROM sklep.kategoria"))
     {
         while(query.next())
         {
@@ -42,7 +42,7 @@ Sklep::Sklep(QWidget *parent) :
     {
         QSqlQuery query(db);
 
-        if(query.exec("SELECT login FROM klient"))
+        if(query.exec("SELECT login FROM sklep.klient"))
         {
             while(query.next())
             {
@@ -151,7 +151,7 @@ void Sklep::produkty()
     }
 
 
-    if(query.exec("SELECT nazwa_produktu FROM produkt " + kategoria_ + "ORDER BY nazwa_produktu " + sort))
+    if(query.exec("SELECT nazwa_produktu FROM sklep.produkt " + kategoria_ + "ORDER BY nazwa_produktu " + sort))
     {
         ui->listWidget->clear();
         while(query.next())
@@ -178,7 +178,7 @@ void Sklep::on_szukaj_clicked()
 
     QSqlQuery query(db);
 
-    if(query.exec("SELECT n FROM produkty WHERE n LIKE '" + nazwa_ + "%'"))
+    if(query.exec("SELECT n FROM sklep.produkty WHERE n LIKE '" + nazwa_ + "%'"))
     {
         ui->listWidget->clear();
         while(query.next())

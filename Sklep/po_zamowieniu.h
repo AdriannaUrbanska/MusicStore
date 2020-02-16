@@ -6,7 +6,9 @@
 namespace Ui {
 class Po_zamowieniu;
 }
-
+/**
+ *  Klasa Po_zamowieniu okna wyswietlanego po złożeniu zamówienia
+ */
 class Po_zamowieniu : public QDialog
 {
     Q_OBJECT
@@ -16,8 +18,14 @@ public:
     ~Po_zamowieniu();
 
 private slots:
+    /**
+     * Metoda realizowana po naciśnięciu przycisku 'Powrót do sklepu'
+     */
     void on_powrot_clicked();
 
+    /**
+     * Metoda realizowana po naciśnięciu przycisku 'Moje zamówienia'
+     */
     void on_m_zamowienia_clicked();
 
 private:

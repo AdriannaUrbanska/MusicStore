@@ -22,7 +22,7 @@ Sklep_pracownik::Sklep_pracownik(QWidget *parent) :
 
     QSqlQuery query(db);
 
-    if(query.exec("SELECT nazwa FROM kategoria"))
+    if(query.exec("SELECT nazwa FROM sklep.kategoria"))
     {
         while(query.next())
         {
@@ -103,7 +103,7 @@ void Sklep_pracownik::produkty()
     }
 
 
-    if(query.exec("SELECT nazwa_produktu FROM produkt " + kategoria_ + "ORDER BY nazwa_produktu " + sort))
+    if(query.exec("SELECT nazwa_produktu FROM sklep.produkt " + kategoria_ + "ORDER BY nazwa_produktu " + sort))
     {
         ui->listWidget->clear();
         while(query.next())

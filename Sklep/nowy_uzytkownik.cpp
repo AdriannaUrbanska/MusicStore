@@ -51,7 +51,7 @@ void Nowy_uzytkownik::on_utworz_konto_clicked()
 
     QSqlQuery query(db);
 
-    if(query.exec("SELECT * FROM login(" + login_ + ")"))
+    if(query.exec("SELECT * FROM sklep.login(" + login_ + ")"))
     {
         query.next();
         login_spr = query.value(0).toString();
@@ -59,7 +59,7 @@ void Nowy_uzytkownik::on_utworz_konto_clicked()
     else
         QMessageBox::warning(this, "Błąd", "Błąd połączenia!");
 
-    if(query.exec("SELECT * FROM email(" + email_ + ")"))
+    if(query.exec("SELECT * FROM sklep.email(" + email_ + ")"))
     {
         query.next();
         email_spr = query.value(0).toString();
@@ -90,24 +90,31 @@ void Nowy_uzytkownik::on_utworz_konto_clicked()
         QString id_dane_;
         QString id_adres_;
 
-        if (query.exec("SELECT * FROM id_dane_next"))
+        if (query.exec("SELECT * FROM sklep.id_dane_next"))
         {
             query.next();
             id_dane_ = query.value(0).toString();
 
-            if(query.exec("INSERT INTO dane VALUES(" + id_dane_ + "," + imie_ + "," + nazwisko_ + "," + telefon_ + "," + email_ + "," + haslo_ + ")"))
+            if(id_dane_ == "")
+                id_dane_ = '1';
+
+            if(query.exec("INSERT INTO sklep.dane VALUES(" + id_dane_ + "," + imie_ + "," + nazwisko_ + "," + telefon_ + "," + email_ + "," + haslo_ + ")"))
             { 
                 qDebug()<<"Dodano dane";
 
-                if(query.exec("SELECT * FROM id_adres_next"))
+                if(query.exec("SELECT * FROM sklep.id_adres_next"))
                 {
                     query.next();
                     id_adres_ = query.value(0).toString() + ",";
-                    if(query.exec("INSERT INTO adres VALUES(" + id_adres_ + ulica_ + "," + budynek_ + "," + mieszkanie_ + "," + kod_ + "," + miasto_ + "," + kraj_ +")"))
+
+                    if(id_adres_ == "")
+                        id_adres_ = '1';
+
+                    if(query.exec("INSERT INTO sklep.adres VALUES(" + id_adres_ + ulica_ + "," + budynek_ + "," + mieszkanie_ + "," + kod_ + "," + miasto_ + "," + kraj_ +")"))
                     {
                         qDebug()<<"Dodano adres";
 
-                        if(query.exec("INSERT INTO klient VALUES("+login_ + "," + id_adres_ + id_dane_ + ")"))
+                        if(query.exec("INSERT INTO sklep.klient VALUES("+login_ + "," + id_adres_ + id_dane_ + ")"))
                         {
                             qDebug()<<"Dodano klienta";
                             s = new Sklep(this);

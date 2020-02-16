@@ -18,7 +18,7 @@ Dodaj_produkt::Dodaj_produkt(QWidget *parent) :
 
     QSqlQuery query(db);
 
-    if(query.exec("SELECT nazwa FROM kategoria"))
+    if(query.exec("SELECT nazwa FROM sklep.kategoria"))
     {
         while(query.next())
         {
@@ -58,7 +58,7 @@ void Dodaj_produkt::on_dodaj_clicked()
     }
     else
     {
-        QString query_ = "INSERT INTO produkt VALUES (" + produkt_ + kategoria_ + cena_ + opis_ + sztuki_ + ");";
+        QString query_ = "INSERT INTO sklep.produkt VALUES (" + produkt_ + kategoria_ + cena_ + opis_ + sztuki_ + ");";
 
         QSqlQuery query(db);
         if(query.exec(query_))
@@ -70,7 +70,7 @@ void Dodaj_produkt::on_dodaj_clicked()
             this->parentWidget()->parentWidget()->findChild<QComboBox*>("kategoria")->setCurrentText(0);
             this->parentWidget()->parentWidget()->findChild<QComboBox*>("sortowanie")->setCurrentText(0);
 
-            if(query.exec("SELECT nazwa_produktu FROM produkt ORDER BY nazwa_produktu "))
+            if(query.exec("SELECT nazwa_produktu FROM sklep.produkt ORDER BY nazwa_produktu "))
             {
                 list->clear();
                 while(query.next())
