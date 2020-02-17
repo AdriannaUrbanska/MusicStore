@@ -1,3 +1,5 @@
+CREATE SCHEMA sklep;
+
 CREATE TABLE Kategoria (
                 id_kategoria INTEGER NOT NULL,
                 nazwa VARCHAR(30) NOT NULL,

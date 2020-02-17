@@ -1,17 +1,25 @@
 #include "mainwindow.h"
 #include <QApplication>
 #include "externs.h"
+#include "polaczenie.h"
+#include <QDebug>
 
 extern QSqlDatabase db;
-extern void connection();
-extern void close();
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    connection();
-    MainWindow w;
-    w.show();
+    Polaczenie p;
+    p.show();
+    bool ok = true;
+
+    if(ok)
+    {
+        MainWindow w;
+        w.show();
+    }
+    else
+        qDebug()<<"BLAD";
 
     return a.exec();
 }

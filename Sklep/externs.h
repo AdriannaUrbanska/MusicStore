@@ -5,25 +5,29 @@
 #include <QDebug>
 
 QSqlDatabase db = QSqlDatabase::addDatabase("QPSQL");
+QString baza;
+QString host;
+int port;
+QString nazwa;
+QString haslo;
+bool ok;
 
 /**
  * Funkcja nawiązująca połączenie z bazą danych
  */
-void connection()
+bool connection()
 {
     db.setConnectOptions();
-    db.setHostName("localhost");
-    db.setDatabaseName("u7urbanska");
-    db.setUserName("u7urbanska");
-    db.setPassword("7urbanska");
-    db.setPort(54320);
-    bool ok = db.open();
+    db.setHostName(host);
+    db.setDatabaseName(baza);
+    db.setUserName(nazwa);
+    db.setPassword(haslo);
+    db.setPort(port);
 
-    if(ok)
-        qDebug()<<"OK\n";
-    else
-        qDebug()<<"ERROR\n";
+    bool polaczenie = db.open();
 
+    qDebug()<<"BAZA "<<baza;
+    return polaczenie;
 }
 
 void close() {db.close();}

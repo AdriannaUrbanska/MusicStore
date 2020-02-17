@@ -10,6 +10,7 @@
 
 extern QSqlDatabase db;
 extern void close();
+extern bool ok;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -48,58 +49,63 @@ void MainWindow::on_zaloguj_clicked()
 
     QSqlQuery query(db);
 
-    if(ui->radioKlient->isChecked())
+    if(ok)
     {
-        if(query.exec("SELECT * FROM sklep.uzytkownicy_K"))
+        if(ui->radioKlient->isChecked())
         {
-            while(query.next())
+            if(query.exec("SELECT * FROM sklep.uzytkownicy_K"))
             {
-                if(login_ == query.value(0).toString() &&
-                        haslo_ == query.value(1).toString())
+                while(query.next())
                 {
-                    poprawnosc = true;
-                    break;
+                    if(login_ == query.value(0).toString() &&
+                            haslo_ == query.value(1).toString())
+                    {
+                        poprawnosc = true;
+                        break;
+                    }
                 }
-            }
 
-            if(poprawnosc)
-            {
-                s = new Sklep(this);
-                this->hide();
-                s->show();
+                if(poprawnosc)
+                {
+                    s = new Sklep(this);
+                    this->hide();
+                    s->show();
+                }
+                else
+                  QMessageBox::warning(this, "Logowanie", "Login lub hasło jest błędne!");
             }
             else
-              QMessageBox::warning(this, "Logowanie", "Login lub hasło jest błędne!");
+                QMessageBox::warning(this, "Błąd", "Błąd połączenia!");
         }
         else
-            QMessageBox::warning(this, "Błąd", "Błąd połączenia!");
+        {
+            if(query.exec("SELECT * FROM sklep.uzytkownicy_P"))
+            {
+                while(query.next())
+                {
+                    if(login_ == query.value(0).toString() &&
+                            haslo_ == query.value(1).toString())
+                    {
+                        poprawnosc = true;
+                        break;
+                    }
+                }
+
+                if(poprawnosc)
+                {
+                    s_p = new Sklep_pracownik(this);
+                    this->hide();
+                    s_p->show();
+                }
+                else
+                  QMessageBox::warning(this, "Logowanie", "Login lub hasło jest błędne!");
+            }
+            else
+                QMessageBox::warning(this, "Błąd", "Błąd połączenia!");
+        }
     }
     else
-    {
-        if(query.exec("SELECT * FROM sklep.uzytkownicy_P"))
-        {
-            while(query.next())
-            {
-                if(login_ == query.value(0).toString() &&
-                        haslo_ == query.value(1).toString())
-                {
-                    poprawnosc = true;
-                    break;
-                }
-            }
-
-            if(poprawnosc)
-            {
-                s_p = new Sklep_pracownik(this);
-                this->hide();
-                s_p->show();
-            }
-            else
-              QMessageBox::warning(this, "Logowanie", "Login lub hasło jest błędne!");
-        }
-        else
-            QMessageBox::warning(this, "Błąd", "Błąd połączenia!");
-    }
+        QMessageBox::warning(this, "Połączenie", "Błąd połączenia z bazą!");
 }
 
 

@@ -43,7 +43,8 @@ SOURCES += main.cpp\
     ocena.cpp \
     zamowienie_info.cpp \
     zamowienie_pracownik_info.cpp \
-    sklep_info.cpp
+    sklep_info.cpp \
+    polaczenie.cpp
 
 HEADERS  += mainwindow.h \
     sklep.h \
@@ -61,7 +62,8 @@ HEADERS  += mainwindow.h \
     ocena.h \
     zamowienie_info.h \
     zamowienie_pracownik_info.h \
-    sklep_info.h
+    sklep_info.h \
+    polaczenie.h
 
 FORMS    += mainwindow.ui \
     sklep.ui \
@@ -78,4 +80,5 @@ FORMS    += mainwindow.ui \
     ocena.ui \
     zamowienie_info.ui \
     zamowienie_pracownik_info.ui \
-    sklep_info.ui
+    sklep_info.ui \
+    polaczenie.ui
